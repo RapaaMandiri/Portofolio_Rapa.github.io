@@ -9,123 +9,136 @@
         @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Homemade+Apple&family=Special+Elite&display=swap');
 
         :root {
-            --bg-desk: #d1c7ac;
+            --bg-desk: #ccc1a3; /* Warna meja sedikit lebih gelap agar kertas menonjol */
             --paper: #fbf8ef;
-            --tape-pink: rgba(255, 182, 193, 0.7);
-            --tape-blue: rgba(173, 216, 230, 0.7);
-            --tape-yellow: rgba(240, 230, 140, 0.7);
-            --tape-green: rgba(188, 237, 188, 0.7);
+            --tape-pink: rgba(255, 182, 193, 0.6);
+            --tape-blue: rgba(173, 216, 230, 0.6);
+            --tape-yellow: rgba(240, 230, 140, 0.6);
+            --tape-green: rgba(188, 237, 188, 0.6);
         }
 
         body {
             background-color: var(--bg-desk);
-            background-image: radial-gradient(#b5a98a 1.5px, transparent 1.5px);
-            background-size: 30px 30px;
+            /* Pola titik-titik scrapbook yang lebih kuat */
+            background-image: radial-gradient(#9c9173 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
             font-family: 'Courier Prime', monospace;
             margin: 0; padding: 0; color: #2c2c2c;
             overflow-x: hidden;
+            padding-top: 60px; /* Jarak untuk marquee */
+            padding-bottom: 80px; /* Jarak untuk iPod */
         }
 
         /* --- iPod Emulator Mini --- */
         .ipod-emulator {
-            position: fixed; bottom: 20px; left: 20px;
-            width: 145px; height: 235px; background: #333;
-            border-radius: 18px; border: 3px solid #111;
-            box-shadow: 10px 10px 25px rgba(0,0,0,0.4); z-index: 9999;
+            position: fixed; bottom: 15px; left: 15px;
+            width: 140px; height: 230px; background: #222;
+            border-radius: 18px; border: 4px solid #000;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.5); z-index: 9999;
             display: flex; flex-direction: column; align-items: center;
-            padding: 12px; transform: rotate(-2deg);
+            padding: 10px; transform: rotate(-1deg);
         }
         
-        .ipod-emulator::before {
-            content: ''; position: absolute; top: -10px; left: -10px;
-            width: 50px; height: 50px; background: #fff;
-            clip-path: polygon(0% 0%, 100% 20%, 80% 100%, 0% 80%);
-            z-index: -1; opacity: 0.8;
-        }
-
         .ipod-screen {
-            width: 120px; height: 90px; background: #b7bca3;
-            border: 4px solid #000; border-radius: 5px; padding: 8px;
-            box-sizing: border-box; font-size: 0.55rem; color: #111;
+            width: 115px; height: 85px; background: #a4a98e;
+            border: 3px solid #000; border-radius: 4px; padding: 6px;
+            box-sizing: border-box; font-size: 0.5rem; color: #111;
             font-family: sans-serif;
         }
 
         .click-wheel {
-            width: 95px; height: 95px; background: #f0f0f0;
-            border-radius: 50%; margin-top: 15px; position: relative;
-            cursor: pointer; border: 1px solid #ccc;
+            width: 90px; height: 90px; background: #eee;
+            border-radius: 50%; margin-top: 12px; position: relative;
+            cursor: pointer; border: 1px solid #bbb;
         }
 
         .center-button {
-            width: 38px; height: 38px; background: #ddd;
+            width: 35px; height: 35px; background: #ccc;
             border-radius: 50%; position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%); border: 1px solid #bbb;
+            transform: translate(-50%, -50%); border: 1px solid #aaa;
         }
 
-        /* --- Scrapbook Elements --- */
-        .torn-paper {
-            position: absolute; background: #eee;
-            padding: 10px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-            font-family: 'Homemade Apple'; font-size: 0.8rem;
-            clip-path: polygon(0% 15%, 15% 0%, 85% 10%, 100% 15%, 95% 85%, 85% 100%, 15% 90%, 0% 85%);
+        /* --- Scrapbook Stickers & Torn Paper Effects (CSS Only) --- */
+        
+        /* Efek Kertas Sobek Washi Tape */
+        .torn-washi {
+            position: absolute; width: 100px; height: 25px;
+            background: var(--tape-blue); opacity: 0.7; z-index: 100;
+            /* Efek gerigi sobek dengan clip-path */
+            clip-path: polygon(0% 10%, 5% 0%, 10% 10%, 15% 0%, 20% 10%, 25% 0%, 30% 10%, 35% 0%, 40% 10%, 45% 0%, 50% 10%, 55% 0%, 60% 10%, 65% 0%, 70% 10%, 75% 0%, 80% 10%, 85% 0%, 90% 10%, 95% 0%, 100% 10%, 100% 90%, 95% 100%, 90% 90%, 85% 100%, 80% 90%, 75% 100%, 70% 90%, 65% 100%, 60% 90%, 55% 100%, 50% 90%, 45% 100%, 40% 90%, 35% 100%, 30% 90%, 25% 100%, 20% 90%, 15% 100%, 10% 90%, 5% 100%, 0% 90%);
         }
 
-        /* Hiasan tambahan stamp/label */
-        .stamp-badge {
-            position: absolute; border: 2px dashed #ff9999;
-            color: #ff6b6b; padding: 5px 12px; font-family: 'Special Elite';
-            font-size: 0.7rem; background: rgba(255,255,255,0.8);
-            transform: rotate(-5deg); border-radius: 5px;
+        /* Stiker Kertas Sobek Sticky Note */
+        .sticky-note-torn {
+            position: absolute; background: #ffeaa7;
+            padding: 15px; box-shadow: 3px 3px 8px rgba(0,0,0,0.15);
+            font-family: 'Homemade Apple', cursive; font-size: 0.75rem;
+            width: 110px; text-align: center; z-index: 10;
+            /* Efek sobek kasar di bawah */
+            clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 95% 90%, 90% 85%, 85% 90%, 80% 85%, 75% 90%, 70% 85%, 65% 90%, 60% 85%, 55% 90%, 50% 85%, 45% 90%, 40% 85%, 35% 90%, 30% 85%, 25% 90%, 20% 85%, 15% 90%, 10% 85%, 5% 90%, 0% 85%);
         }
 
-        .tape {
-            position: absolute; width: 80px; height: 30px;
-            background: var(--tape-yellow); opacity: 0.6;
-            transform: rotate(-15deg); z-index: 100;
+        /* Stiker Label Kuno (Vintage Label) */
+        .vintage-label {
+            position: absolute; border: 2px solid #a3816a; color: #8c6a51;
+            padding: 3px 8px; font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem; background: #fdfae6; border-radius: 4px;
+            text-transform: uppercase; letter-spacing: 1px; z-index: 10;
+        }
+
+        /* Elemen Selotip Transparan */
+        .tape-clear {
+            position: absolute; width: 60px; height: 18px;
+            background: rgba(255,255,255,0.4); border: 1px solid rgba(200,200,200,0.3);
+            z-index: 100; box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         }
 
         .marquee-label {
-            background: #222; color: #fff; padding: 10px 0;
+            background: #111; color: #fff; padding: 8px 0;
             font-family: 'Special Elite', cursive;
             position: fixed; top: 0; width: 100%; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        nav { display: flex; justify-content: center; gap: 15px; margin-top: 80px; flex-wrap: wrap;}
+        nav { display: flex; justify-content: center; gap: 12px; margin-top: 40px; flex-wrap: wrap; position: relative;}
         
         .nav-link {
-            background: #fff; padding: 10px 20px; text-decoration: none; color: #000;
+            background: #fff; padding: 8px 18px; text-decoration: none; color: #000;
             font-family: 'Special Elite'; border: 1px dashed #999;
-            transform: rotate(-2deg); transition: 0.3s;
+            transform: rotate(-2deg); transition: 0.3s; font-size: 0.9rem;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.1);
         }
+        .nav-link:hover { transform: rotate(0deg) scale(1.05); background: #fffdf5; }
 
         .container {
-            max-width: 950px; margin: 40px auto; background: var(--paper);
-            padding: 40px; position: relative; border: 1px solid #ddd;
-            box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+            max-width: 950px; margin: 30px auto; background: var(--paper);
+            padding: 50px 30px; position: relative; border: 1px solid #ddd;
+            box-shadow: 15px 15px 0 rgba(0,0,0,0.05);
             box-sizing: border-box; width: 92%;
         }
 
         .polaroid {
-            background: #fff; padding: 12px 12px 35px 12px;
-            box-shadow: 5px 10px 20px rgba(0,0,0,0.1);
+            background: #fff; padding: 10px 10px 30px 10px;
+            box-shadow: 4px 8px 15px rgba(0,0,0,0.1);
             border: 1px solid #eee; display: inline-block;
             text-align: center; position: relative; margin-bottom: 10px;
         }
         
         .polaroid img { width: 100%; height: auto; display: block; }
-        .polaroid-cap { font-family: 'Homemade Apple'; font-size: 0.9rem; margin-top: 10px; }
+        .polaroid-cap { font-family: 'Homemade Apple'; font-size: 0.85rem; margin-top: 8px; color: #444; }
 
         .section-tag {
-            font-family: 'Special Elite'; background: #333; color: #fff;
-            padding: 5px 15px; display: inline-block; margin: 15px 0;
-            font-size: 0.9rem;
+            font-family: 'Special Elite'; background: #2c2c2c; color: #fff;
+            padding: 4px 12px; display: inline-block; margin: 12px 0;
+            font-size: 0.85rem; transform: rotate(-1deg);
         }
 
         .gallery-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px; margin-top: 15px;
+            gap: 25px; margin-top: 15px;
         }
         
+        /* Bagian galeri tersusun ke bawah */
         .gallery-down {
             display: flex;
             flex-direction: column;
@@ -135,82 +148,97 @@
         }
 
         .pmr-section {
-            border: 2px dashed #ccc; padding: 25px; margin: 30px 0;
-            background: rgba(255,255,255,0.5); border-radius: 15px;
+            border: 2px dashed #bbb; padding: 25px; margin: 35px 0;
+            background: rgba(255,255,255,0.4); border-radius: 10px;
             text-align: center; position: relative;
         }
 
         .bio-grid { 
             display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 30px; 
+            grid-template-columns: 1fr; /* Default mobile, desktop di media query */
+            gap: 25px; 
         }
 
-        .data-row { border-bottom: 1px dotted #ccc; padding: 6px 0; display: flex; font-size: 0.9rem;}
-        .data-label { width: 120px; font-weight: bold; }
+        .data-row { border-bottom: 1px dotted #ccc; padding: 5px 0; display: flex; font-size: 0.9rem;}
+        .data-label { width: 100px; font-weight: bold; flex-shrink: 0;}
 
-        footer { margin-top: 40px; border-top: 2px dashed #bbb; padding-top: 20px; text-align: center; font-size: 0.85rem;}
+        footer { margin-top: 45px; border-top: 2px dashed #999; padding-top: 25px; text-align: center; font-size: 0.8rem; position: relative;}
 
-        @media (max-width: 768px) {
-            .ipod-emulator {
-                position: relative; bottom: auto; left: auto;
-                width: 90%; height: auto; transform: rotate(0deg);
-                margin: 20px auto; max-width: 250px;
-            }
-            .container { padding: 20px; }
-            .bio-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
+        @media (min-width: 768px) {
+            .bio-grid { grid-template-columns: 1fr 1fr; }
+            .container { padding: 60px; }
+            .polaroid { padding: 12px 12px 35px 12px; }
+            .data-label { width: 120px; }
         }
     </style>
 </head>
 <body>
 
     <div class="ipod-emulator">
+        <div style="position:absolute; top:5px; right:5px; width:6px; height:6px; background:rgba(255,255,255,0.1); border-radius:50%;"></div>
         <div class="ipod-screen">
             <div style="border-bottom:1px solid #333; font-weight:bold; margin-bottom:5px; display:flex; justify-content:space-between;">
                 <span>iPod</span>
                 <span id="play-status" style="font-size:0.4rem; color:red;">●</span>
             </div>
             <div id="screen-label" style="font-size: 0.4rem; color: #444;">Ready to Play</div>
-            <marquee id="song-title" scrollamount="2" style="margin-top:5px; font-weight:bold;">Attention - NewJeans</marquee>
+            <marquee id="song-title" scrollamount="2" style="margin-top:5px; font-weight:bold; font-size:0.5rem;">Attention - NewJeans</marquee>
             <div style="width:100%; height:4px; background:rgba(0,0,0,0.2); margin-top:15px; position:relative;">
                 <div id="progress-disk" style="width:0%; height:100%; background:#000; transition: 0.1s;"></div>
             </div>
         </div>
         <div class="click-wheel" id="play-trigger">
             <div class="center-button"></div>
-            <span id="prev-btn" style="position:absolute; left:5px; top:40%; font-size:0.5rem; cursor:pointer;">⏪</span>
-            <span id="next-btn" style="position:absolute; right:5px; top:40%; font-size:0.5rem; cursor:pointer;">⏩</span>
-            <span style="position:absolute; top:5px; left:35%; font-size:0.5rem; font-weight:bold; color:#aaa;">MENU</span>
-            <span style="position:absolute; bottom:5px; left:43%; font-size:0.5rem;">⏯</span>
+            <span id="prev-btn" style="position:absolute; left:5px; top:40%; font-size:0.5rem; cursor:pointer; color:#333;">⏪</span>
+            <span id="next-btn" style="position:absolute; right:5px; top:40%; font-size:0.5rem; cursor:pointer; color:#333;">⏩</span>
+            <span style="position:absolute; top:3px; left:33%; font-size:0.5rem; font-weight:bold; color:#777;">MENU</span>
+            <span style="position:absolute; bottom:3px; left:43%; font-size:0.5rem; color:#333;">⏯</span>
         </div>
         <audio id="myAudio"></audio>
     </div>
 
     <div class="marquee-label">
-        <marquee>ABOUT RAFA // HUMAS PMR 2026 // SMK PRESTASI PRIMA // REKAYASA PERANGKAT LUNAK</marquee>
+        <marquee scrollamount="6">* RAFA MANDALA * PPLG 2026 * SMK PRESTASI PRIMA * HUMAS PMR * REKAYASA PERANGKAT LUNAK * CODING & ART *</marquee>
     </div>
 
     <nav>
+        <div class="tape-clear" style="top: -8px; left: 25%; transform: rotate(-10deg);"></div>
+        <div class="tape-clear" style="top: -5px; right: 25%; transform: rotate(15deg);"></div>
+        
         <a href="index.html" class="nav-link">HOME</a>
         <a href="tentang.html" class="nav-link" style="transform:rotate(3deg)">TENTANG</a>
         <a href="proyek.html" class="nav-link" style="transform:rotate(-1deg)">PROYEK</a>
     </nav>
 
     <div class="container">
-        <div class="stamp-badge" style="top: 35px; left: 65%;">⭐ RAFA'S SCRAPBOOK ⭐</div>
-        <div class="torn-paper" style="top:10px; right:-10px; background:#ffeaa7; transform:rotate(5deg);">Notes: Hello 2026!</div>
-        <div class="torn-paper" style="bottom:20px; left:-20px; background:#fab1a0; transform:rotate(-10deg);">PPLG Student</div>
-        <div class="tape" style="top:20px; left:20px;"></div>
-        <div class="tape" style="top:50%; left:80%; transform: rotate(15deg); background: var(--tape-green);"></div>
+        
+        <div class="torn-washi" style="top: -10px; left: 15%; background: var(--tape-green); transform: rotate(-2deg); width: 120px;"></div>
+        <div class="sticky-note-torn" style="top: -15px; right: 5%; transform: rotate(3deg); background: #fab1a0;">
+            * Hello *<br>Friend!
+        </div>
+        <div class="vintage-label" style="top: 25px; left: -15px; transform: rotate(-10deg);">Verified PPLG</div>
+        <div class="vintage-label" style="bottom: 50px; right: -20px; border-color: #555; color: #555; transform: rotate(15deg);">Est. 2026</div>
 
-        <header>
-            <h1 style="font-family: 'Homemade Apple'; font-size: 2.8rem; margin: 0;">Tentang Saya.</h1>
-            <p style="font-family: 'Special Elite';">Identity & Organization Journey</p>
+        <div class="torn-paper" style="top:10px; right:-20px; background:#ffeaa7; transform:rotate(5deg); font-family:'Courier Prime'; font-size:0.6rem; color:#666;">
+            [Memo]<br>PPLG<br>Student
+        </div>
+        <div class="torn-paper" style="bottom:-15px; left:30%; background:#81ecec; transform:rotate(-2deg); font-family:'Homemade Apple'; font-size:0.65rem; color:#222; width: 130px; height: 15px; text-align:center;">
+            My Portfolio Journey
+        </div>
+
+        <div style="position: absolute; top: 120px; right: 60px; font-family:'Courier Prime'; font-size: 2.2rem; color: rgba(139,69,19,0.15); transform:rotate(-20deg); border: 4px solid rgba(139,69,19,0.15); border-radius: 50%; padding: 10px; pointer-events: none;">
+            OK
+        </div>
+
+        <header style="margin-bottom: 40px; position: relative;">
+            <div class="tape-clear" style="top: -10px; left: calc(50% - 30px); transform: rotate(0deg); background: rgba(255,255,255,0.6);"></div>
+            <h1 style="font-family: 'Homemade Apple'; font-size: 3rem; margin: 0; text-align:center;">Tentang Saya.</h1>
+            <p style="font-family: 'Special Elite'; text-align:center; color:#555;">Identity & Organization Journey</p>
         </header>
 
         <div class="bio-grid">
-            <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <div style="display: flex; justify-content: center; margin-top: 10px; position: relative;">
+                <div class="vintage-label" style="top:-5px; right:-10px; background: #eee;">2024Formal</div>
                 <div class="polaroid" style="transform: rotate(-3deg); max-width: 220px;">
                     <div class="tape" style="top:-15px; left:50%; transform:translateX(-50%) rotate(0deg); width:60px; background:var(--tape-pink);"></div>
                     <img src="images/formal.png" alt="Rafa Formal" onerror="this.src='https://via.placeholder.com/200x250?text=Foto+Rafa'">
@@ -218,18 +246,22 @@
                 </div>
             </div>
 
-            <div>
+            <div style="position: relative;">
+                <div class="tape-clear" style="bottom: 0; left: -20px; transform: rotate(110deg); background: var(--tape-green);"></div>
                 <span class="section-tag">PERSONAL DATA</span>
                 <div class="data-row"><span class="data-label">Nama</span><span>Rafa Mandala Putra Mioktobi</span></div>
                 <div class="data-row"><span class="data-label">TTL</span><span>Bekasi, 12 Oktober 2008</span></div>
                 <div class="data-row"><span class="data-label">Email</span><span>mandalarafa2@gmail.com</span></div>
                 <div class="data-row"><span class="data-label">GitHub</span><span><a href="https://github.com/RapaaMandiri" target="_blank" style="color:#0984e3; text-decoration:none;">RapaaMandiri</a></span></div>
-                <span class="section-tag" style="background:#d63031;">EDUCATION</span>
-                <ul style="list-style: '📌 '; padding-left: 20px; font-size: 0.9rem;">
-                    <li><strong>SMK Prestasi Prima</strong> - 2024 - Sekarang</li>
-                    <li><strong>SMP PGRI 30</strong> - 2021 - 2024</li>
-                    <li><strong>SDN 02 Bojong Kulur</strong> - 2015 - 2021</li>
-                </ul>
+            
+                <div style="margin-top:25px;">
+                    <span class="section-tag" style="background:#d63031;">EDUCATION</span>
+                    <ul style="list-style: '📌 '; padding-left: 20px; font-size: 0.9rem; font-family:'Courier Prime';">
+                        <li><strong>SMK Prestasi Prima</strong> - 2024</li>
+                        <li><strong>SMP PGRI 30</strong> - 2021 - 2024</li>
+                        <li><strong>SDN 02 Bojong Kulur</strong> - 2015</li>
+                    </ul>
+                </div>
             </div>
 
             <div>
@@ -267,19 +299,63 @@
             </div>
         </div>
 
+        <div style="margin-top: 60px; position: relative; border: 2px dashed #a8a29e; padding: 30px; background: rgba(255,255,255,0.3); border-radius: 12px;">
+            <div class="torn-paper" style="top:-18px; left:15px; background:#fff; font-size:0.6rem; font-family:'Courier Prime';">My Channel</div>
+            <span class="section-tag" style="background:#ff0000;">YOUTUBE JOURNEY</span>
+            
+            <div style="display: flex; align-items: center; gap: 20px; margin: 20px 0 35px 0; background: #fffdf5; padding: 15px; border-radius: 8px; border: 1px solid #e7d8c9;">
+                <img src="https://yt3.ggpht.com/7_i3bX1BGOY8FjjYK9pfN7H6rWXmsxLH8rcP3kFPZMOnfigv9c4dNC0yZ_zzfSrAk-7h2_TXrg=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="YouTube Profile" onerror="this.src='https://via.placeholder.com/80?text=YT'" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #ccc; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                <div>
+                    <h3 style="font-family: 'Special Elite'; margin: 0 0 5px 0; font-size: 1.1rem;">Azuriamandrian08</h3>
+                    <p style="font-family: 'Courier Prime'; font-size: 0.75rem; margin: 0; color: #555;">Gaming, Coding, & Random Stuff Journey</p>
+                    <a href="https://www.youtube.com/@Azuriamandrian08" target="_blank" style="display: inline-block; margin-top: 8px; font-family: 'Special Elite'; font-size: 0.7rem; background: #ff0000; color: white; padding: 4px 10px; text-decoration: none; border-radius: 4px;">▶ Subscribe</a>
+                </div>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="polaroid" style="transform:rotate(1deg); background:#fff;">
+                    <div class="tape-clear" style="top: -5px; right: 5px; transform:rotate(15deg);"></div>
+                    <a href="https://youtu.be/Ld2_JGhB5nA?si=zzqEbQm2SuLTCL9a" target="_blank" style="text-decoration: none; color: #333;">
+                        <img src="https://img.youtube.com/vi/Ld2_JGhB5nA/mqdefault.jpg" alt="Video 1" style="width:100%; height:140px; object-fit:cover;">
+                        <div class="polaroid-cap" style="font-size: 0.75rem;">Video 1</div>
+                    </a>
+                </div>
+                
+                <div class="polaroid" style="transform:rotate(-2deg); background:#fff;">
+                    <div class="tape" style="top:-12px; left:calc(50% - 25px); width:40px; background:var(--tape-pink);"></div>
+                    <a href="https://youtu.be/a_uBUMVjMB4?si=-WBVNIZwR6N0FMN6" target="_blank" style="text-decoration: none; color: #333;">
+                        <img src="https://img.youtube.com/vi/a_uBUMVjMB4/mqdefault.jpg" alt="Video 2" style="width:100%; height:140px; object-fit:cover;">
+                        <div class="polaroid-cap" style="font-size: 0.75rem;">Video 2</div>
+                    </a>
+                </div>
+                
+                <div class="polaroid" style="transform:rotate(2deg); background:#fff;">
+                    <div class="tape-clear" style="bottom: 10px; right: 5px; transform:rotate(30deg);"></div>
+                    <a href="https://youtu.be/5k3seHdhgrE?si=aNN43X-HmY6A_Sjb" target="_blank" style="text-decoration: none; color: #333;">
+                        <img src="https://img.youtube.com/vi/5k3seHdhgrE/mqdefault.jpg" alt="Video 3" style="width:100%; height:140px; object-fit:cover;">
+                        <div class="polaroid-cap" style="font-size: 0.75rem;">Video 3</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="pmr-section">
-            <div class="torn-paper" style="top:-15px; left:10px; background:#fff; font-size:0.6rem;">Org Record</div>
-            <span class="section-tag" style="background:#2d3436;">ORGANIZATION JOURNEY</span>
-            <p><strong>Wakil Koordinator Humas PMR (2024-2025)</strong></p>
-            <div style="margin-top: 20px; display: flex; justify-content: center;">
-                <div class="polaroid" style="max-width: 400px; transform: rotate(1deg);">
+            <div class="torn-paper" style="top:-18px; left:10px; background:#fff; font-size:0.6rem; font-family:'Courier Prime';">HumasRecord</div>
+            <div class="tape-clear" style="bottom:-5px; right: 15%; transform: rotate(10deg); background: var(--tape-green);"></div>
+            <span class="section-tag" style="background:#444;">ORGANIZATION JOURNEY</span>
+            <p style="font-family: 'Courier Prime'; font-weight:bold;">Wakil Koordinator Humas PMR (2024-2025)</p>
+            <div style="margin-top: 25px; display: flex; justify-content: center; position: relative;">
+                <div style="position: absolute; top: -10px; right: -15px; font-size: 1.5rem; transform:rotate(15deg);">🏆</div>
+                <div class="polaroid" style="max-width: 400px; transform: rotate(1deg); padding-bottom:40px;">
+                    <div class="tape" style="top:-12px; right:20px; width:50px; background:var(--tape-blue);"></div>
                     <img src="images/sertifikat_pmr.jpg" alt="Sertifikat PMR" onerror="this.src='https://via.placeholder.com/400x200?text=Sertifikat+PMR'">
                     <div class="polaroid-cap">PMR Achievement Certificate</div>
                 </div>
             </div>
         </div>
 
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 55px; position: relative;">
+            <div class="vintage-label" style="top: 0; right: 0; background: var(--tape-pink); color:#333; border:none; border-radius:10px;">Photos</div>
             <span class="section-tag" style="background:#e67e22;">RANDOM MEMORIES</span>
             <div class="gallery-grid">
                 <div class="polaroid" style="transform:rotate(2deg);"><img src="images/img1.jpg" onerror="this.src='https://via.placeholder.com/180x130?text=Img1'"><div class="polaroid-cap">School Online</div></div>
@@ -287,35 +363,44 @@
                 <div class="polaroid" style="transform:rotate(4deg);"><img src="images/img3.webp" onerror="this.src='https://via.placeholder.com/180x130?text=Img3'"><div class="polaroid-cap">In Mall</div></div>
                 <div class="polaroid" style="transform:rotate(-2deg);"><img src="images/img4.jpg" onerror="this.src='https://via.placeholder.com/180x130?text=Img4'"><div class="polaroid-cap">Braga Bandung</div></div>
             </div>
-        </div>
-
-        <div style="margin-top: 50px;">
-            <span class="section-tag" style="background:#e62243;">WITH MY FRIENDS</span>    
-            <div class="gallery-down" style="margin-top: 20px;">
-                <div class="polaroid" style="transform:rotate(3deg); width: 220px;"><img src="images/img5.jpeg" onerror="this.src='https://via.placeholder.com/180x130?text=Img5'"><div class="polaroid-cap">My Class</div></div>
-                <div class="polaroid" style="transform:rotate(-1deg); width: 220px;"><img src="images/img6.jpg" onerror="this.src='https://via.placeholder.com/180x130?text=Img6'"><div class="polaroid-cap">Friends</div></div>
-                <div class="polaroid" style="transform:rotate(2deg); width: 220px;"><img src="images/img7.jpeg" onerror="this.src='https://via.placeholder.com/180x130?text=Img7'"><div class="polaroid-cap">Team PMR</div></div>
+            
+            <div class="gallery-down" style="margin-top: 25px; position: relative;">
+                <div class="polaroid" style="transform:rotate(3deg); width: 220px;">
+                    <div class="tape-clear" style="top:-8px; left:10px; transform:rotate(-15deg);"></div>
+                    <img src="images/img5.jpeg" onerror="this.src='https://via.placeholder.com/220x160?text=Img5'"><div class="polaroid-cap">My Class</div>
+                </div>
+                <div class="polaroid" style="transform:rotate(-1deg); width: 220px;">
+                    <img src="images/img6.jpg" onerror="this.src='https://via.placeholder.com/220x160?text=Img6'"><div class="polaroid-cap">Friends</div>
+                </div>
+                <div class="polaroid" style="transform:rotate(2deg); width: 220px;">
+                    <div class="tape-clear" style="bottom:10px; right:5px; transform:rotate(80deg); background: var(--tape-green);"></div>
+                    <img src="images/img7.jpeg" onerror="this.src='https://via.placeholder.com/220x160?text=Img7'"><div class="polaroid-cap">Team PMR</div>
+                </div>
             </div>
         </div>
 
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 60px; position: relative;">
+            <div class="torn-washi" style="bottom: -10px; right: 10%; background: var(--tape-green); transform: rotate(1deg); width: 150px;"></div>
             <span class="section-tag" style="background:#0984e3;">CODING JOURNEY 💻</span>
             <div class="gallery-grid">
                 <div class="polaroid" style="transform:rotate(-2deg); background:#f0f8ff;">
+                    <div class="tape-clear" style="top: -5px; right: -10px; transform:rotate(40deg);"></div>
                     <img src="images/coding1.jpeg" onerror="this.src='https://via.placeholder.com/180x130?text=Code1'"><div class="polaroid-cap">Project In School</div>
                 </div>
                 <div class="polaroid" style="transform:rotate(3deg); background:#f0f8ff;">
                     <img src="images/coding2.jpeg" onerror="this.src='https://via.placeholder.com/180x130?text=Code2'"><div class="polaroid-cap">My Project Webcam</div>
                 </div>
                 <div class="polaroid" style="transform:rotate(-1deg); background:#f0f8ff;">
+                    <div class="tape" style="top:-10px; left:calc(50% - 25px); width:50px; background:var(--tape-yellow); transform:rotate(0deg);"></div>
                     <img src="images/coding3.jpeg" onerror="this.src='https://via.placeholder.com/180x130?text=Code3'"><div class="polaroid-cap">Desaign Figma Website Gallery!</div>
                 </div>
             </div>
         </div>
 
         <footer>
-            <p style="font-family: 'Homemade Apple';">Crafted with Love by Rafa Mandala</p>
-            <p>© 2026 - PPLG Student Portfolio</p>
+            <div style="position: absolute; top: -12px; left: 20px; font-size: 1.5rem;">❤️</div>
+            <p style="font-family: 'Homemade Apple'; color: #333; margin: 0;"> by Rafa Mandala</p>
+            <p style="font-family: 'Special Elite'; color: #666; margin: 5px 0 0 0;">© 2026 - PPLG Student Portfolio</p>
         </footer>
     </div>
 
@@ -339,20 +424,27 @@
         let isPlaying = false;
 
         function loadTrack(index) {
+            if (playlist.length === 0) return;
             audio.src = playlist[index].src;
             songTitleDisplay.innerText = playlist[index].title;
+            progressBar.style.width = "0%";
         }
 
         loadTrack(currentTrack);
 
-        playTrigger.addEventListener('click', () => {
+        playTrigger.addEventListener('click', (e) => {
+            if (e.target.id === 'next-btn' || e.target.id === 'prev-btn') return;
+            if (playlist.length === 0) return;
+
             if (!isPlaying) {
-                audio.play().catch(err => {
-                    console.log("Audio play ditunda.");
+                audio.play().then(() => {
+                    isPlaying = true;
+                    screenLabel.innerText = "NOW PLAYING...";
+                    playStatus.style.color = "#2ecc71";
+                }).catch(err => {
+                    console.log("Audio play ditunda:", err);
+                    screenLabel.innerText = "Error / Click ⏯";
                 });
-                isPlaying = true;
-                screenLabel.innerText = "NOW PLAYING...";
-                playStatus.style.color = "#2ecc71"; 
             } else {
                 audio.pause();
                 isPlaying = false;
@@ -361,19 +453,27 @@
             }
         });
 
-        document.getElementById('next-btn').addEventListener('click', () => {
+        document.getElementById('next-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (playlist.length === 0) return;
             currentTrack = (currentTrack + 1) % playlist.length;
             loadTrack(currentTrack);
             if (isPlaying) {
                 audio.play().catch(() => {});
+            } else {
+                screenLabel.innerText = "Track Changed";
             }
         });
 
-        document.getElementById('prev-btn').addEventListener('click', () => {
+        document.getElementById('prev-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (playlist.length === 0) return;
             currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
             loadTrack(currentTrack);
             if (isPlaying) {
                 audio.play().catch(() => {});
+            } else {
+                screenLabel.innerText = "Track Changed";
             }
         });
 
@@ -382,6 +482,13 @@
                 const progress = (audio.currentTime / audio.duration) * 100;
                 progressBar.style.width = progress + "%";
             }
+        });
+
+        audio.addEventListener('ended', () => {
+            if (playlist.length === 0) return;
+            currentTrack = (currentTrack + 1) % playlist.length;
+            loadTrack(currentTrack);
+            audio.play().catch(() => {});
         });
     </script>
 </body>
