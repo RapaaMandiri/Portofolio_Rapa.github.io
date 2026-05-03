@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Rafa Mandala</title>
-          <link rel="icon" type="image/png" href="assets/images/logo1.png" />
+    <link rel="icon" type="image/png" href="assets/images/logo1.png" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Homemade+Apple&family=Special+Elite&display=swap');
 
@@ -24,6 +24,34 @@
             margin: 0; padding: 0;
             color: #2c2c2c;
             overflow-x: hidden;
+        }
+
+        /* --- LOADING SCREEN --- */
+        #loading-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-desk);
+            background-image: radial-gradient(#9c9173 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+            z-index: 99999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-box {
+            background: var(--paper); padding: 30px; border: 2px dashed #999;
+            text-align: center; transform: rotate(-1deg);
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+        }
+
+        .loading-spinner {
+            width: 40px; height: 40px; border: 4px solid #ddd;
+            border-top: 4px solid #333; border-radius: 50%;
+            animation: spin 1s linear infinite; margin: 0 auto 15px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* --- RUNNING TEXT --- */
@@ -234,6 +262,13 @@
 </head>
 <body>
 
+    <div id="loading-screen">
+        <div class="loading-box">
+            <div class="loading-spinner"></div>
+            <div style="font-family: 'Special Elite'; font-size: 0.85rem;">Memuat Halaman...</div>
+        </div>
+    </div>
+
     <div class="label-maker-marquee">
         <marquee scrollamount="8">
             * ABOUT ME * RAFA MANDALA * PROGRAMMING LANGUAGES * HTML * CSS * PHP * PYTHON * MYSQL * CONTACT ME *
@@ -320,6 +355,17 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Sembunyikan loading screen ketika halaman selesai dimuat
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading-screen');
+            loading.style.opacity = '0';
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 500);
+        });
+    </script>
 
 </body>
 </html>
