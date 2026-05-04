@@ -182,7 +182,6 @@
         .data-row { border-bottom: 1px dotted #ccc; padding: 5px 0; display: flex; font-size: 0.9rem;}
         .data-label { width: 100px; font-weight: bold; flex-shrink: 0;}
 
-        /* --- Perbaikan Responsif --- */
         .skills-wrapper {
             display: flex; 
             justify-content: center;
@@ -225,7 +224,6 @@
             }
         }
 
-        /* --- Rating Section --- */
         .rating-section {
             margin-top: 40px; padding: 20px; border-top: 2px dashed #aaa;
             text-align: center; font-family: 'Courier Prime', monospace;
@@ -241,12 +239,6 @@
             .container { padding: 60px; }
             .polaroid { padding: 12px 12px 35px 12px; }
             .data-label { width: 120px; }
-        }
-
-        @media (max-width: 600px) {
-            .ipod-emulator {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -498,8 +490,7 @@
     </div>
 
     <script>
-        // Formspree: Ganti YOUR_FORM_ID dengan link endpoint Formspree kamu
-        document.getElementById('rating-form').action = "https://formspree.io/f/xnjwjlpw"; // <-- ISI DI SINI
+        document.getElementById('rating-form').action = "https://formspree.io/f/xnjwjlpw";
 
         window.addEventListener('load', () => {
             const loading = document.getElementById('loading-screen');
@@ -515,11 +506,11 @@
         }
 
         const playlist = [
-            { title: "Attention - NewJeans", src: "assets/audio/Attention.mp3" },
+            { title: "Attention - 뉴진스", src: "assets/audio/Attention.mp3" },
             { title: "TikTok - Kesha", src: "assets/audio/TiK ToK.mp3" },
             { title: "Yes, And - Ariana Grande", src: "assets/audio/yes, and_.mp3" },
-            { title: "Ditto - NewJeans", src: "assets/audio/Ditto.mp3" },
-            { title: "Supernatural - NewJeans", src: "assets/audio/Supernatural.mp3" }
+            { title: "Ditto - 뉴진스", src: "assets/audio/Ditto.mp3" },
+            { title: "Supernatural - 뉴진스", src: "assets/audio/Supernatural.mp3" }
         ];
 
         let currentTrack = 0;
@@ -588,15 +579,8 @@
         audio.addEventListener('timeupdate', () => {
             if (audio.duration) {
                 const progress = (audio.currentTime / audio.duration) * 100;
-                progressBar.style.width = progress + "%";
+                progressBar.style.width = `${progress}%`;
             }
-        });
-
-        audio.addEventListener('ended', () => {
-            if (playlist.length === 0) return;
-            currentTrack = (currentTrack + 1) % playlist.length;
-            loadTrack(currentTrack);
-            audio.play().catch(() => {});
         });
     </script>
 </body>
