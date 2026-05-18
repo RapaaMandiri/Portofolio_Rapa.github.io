@@ -207,6 +207,121 @@
             font-size: 1.1rem;
         }
 
+
+        /* --- --- EMULATOR PAGER DYNAMIC WELCOME MODE --- --- */
+        .pager-body {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            border: 5px solid #111;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.2);
+            max-width: 480px;
+            margin: 40px auto;
+            box-sizing: border-box;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .pager-clip {
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            width: 80px; height: 12px;
+            background: #111;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .pager-screen-container {
+            background: #87a96b; 
+            border: 6px solid #111;
+            border-radius: 6px;
+            padding: 12px;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .pager-screen-container::before {
+            content: "";
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.04) 50%, transparent 50%), linear-gradient(90deg, rgba(0,0,0,0.04) 50%, transparent 50%);
+            background-size: 3px 3px;
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        .pager-lcd-text {
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            color: #1a2f1c;
+            font-size: 1.1rem;
+            min-height: 55px;
+            line-height: 1.4;
+            letter-spacing: 1px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.3);
+        }
+
+        .pager-statusbar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #2b4c2e;
+            margin-bottom: 6px;
+            border-bottom: 1px dashed rgba(0,0,0,0.2);
+            padding-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .pager-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 0 5px;
+        }
+
+        .pager-btn {
+            background: linear-gradient(to bottom, #4e5d6c, #2c3e50);
+            border: 2px solid #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 8px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 0 #000;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.05s ease;
+        }
+
+        .pager-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #000;
+        }
+
+        /* Tombol Utama Merah di Tengah */
+        .pager-btn.btn-main {
+            background: linear-gradient(to bottom, #e74c3c, #c0392b);
+            border-radius: 50%;
+            width: 45px; height: 45px;
+            padding: 0;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 0.85rem;
+            box-shadow: 0 5px 0 #000;
+        }
+        .pager-btn.btn-main:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #000;
+        }
+
+        /* Input tersembunyi penangkap ketikan */
+        .pager-hidden-receiver {
+            position: absolute; opacity: 0; left: -9999px;
+        }
+
         /* --- FOOTER --- */
         footer {
             margin-top: 60px;
@@ -221,42 +336,24 @@
             position: relative;
         }
 
-        /* --- CSS RESPONSIVE (TAMBAHAN KHUSUS VERSI HP) --- */
+        /* --- CSS RESPONSIVE --- */
         @media (max-width: 768px) {
             .scrapbook-page {
                 margin: 20px 10px;
                 padding: 40px 20px;
             }
-            h1 {
-                font-size: 2.5rem;
-            }
+            h1 { font-size: 2.5rem; }
             nav {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 60px;
+                flex-direction: row; flex-wrap: wrap; gap: 10px; margin-top: 60px;
             }
-            .nav-paper {
-                padding: 6px 15px;
-                font-size: 0.9rem;
-            }
-            .skills-container {
-                gap: 20px;
-            }
-            .skill-sticker-box {
-                width: 80px;
-            }
+            .nav-paper { padding: 6px 15px; font-size: 0.9rem; }
+            .skills-container { gap: 20px; }
+            .skill-sticker-box { width: 80px; }
             footer {
-                flex-direction: column;
-                text-align: center !important;
-                gap: 20px;
+                flex-direction: column; text-align: center !important; gap: 20px;
             }
-            footer div {
-                text-align: center !important;
-            }
-            .corner-tape, .washi-pink {
-                display: none; /* Menghilangkan selotip besar di HP biar gak nutupin teks */
-            }
+            footer div { text-align: center !important; }
+            .corner-tape, .washi-pink { display: none; }
         }
     </style>
 </head>
@@ -342,6 +439,35 @@
             <div style="position: absolute; right: 10px; bottom: 0; font-size: 2rem;">🚀</div>
         </div>
 
+
+        <!-- --- --- INTERACTIVE 90s PAGER DYNAMIC WELCOME --- --- -->
+        <div class="pager-body" onclick="focusPagerInput()">
+            <div class="pager-clip"></div>
+            <h3 style="color: #95a5a6; font-family: Arial, sans-serif; font-size: 0.65rem; margin: -5px 0 10px 0; letter-spacing: 2px; text-align: center;">POCKET PAGER BEEP-90X</h3>
+            
+            <div class="pager-screen-container">
+                <div class="pager-statusbar">
+                    <span id="pager-msg-count">INBOX: 3 MOTIVASI</span>
+                    <span id="pager-time">12:00 PM</span>
+                </div>
+                <!-- Sapaan Awal Sebelum Diklik -->
+                <div class="pager-lcd-text" id="pager-lcd-display">[RAFA M.]: HALO! SAYA RAFA MANDALA. SILAKAN TEKAN TOMBOL MERAH YAA :)...</div>
+            </div>
+
+            <!-- Input Buffer Hidden -->
+            <input type="text" class="pager-hidden-receiver" id="pager-core-input" autocomplete="off" maxlength="80" placeholder="Ketik di sini...">
+
+            <!-- Tombol Navigasi Pager -->
+            <div class="pager-controls">
+                <button class="pager-btn" onclick="navigateInbox(-1, event)">◀ PREV</button>
+                <button class="pager-btn" onclick="clearCurrentMessage(event)">CLEAR</button>
+                <!-- Tombol Merah Utama untuk Memicu Motivasi Acak & Kirim Pesan -->
+                <button class="pager-btn btn-main" onclick="handleMainButton(event)">BOOM</button>
+                <button class="pager-btn" onclick="navigateInbox(1, event)">NEXT ▶</button>
+            </div>
+        </div>
+
+
         <footer>
             <div style="position: absolute; top: -15px; left: 20px; width: 60px; height: 20px; background: var(--washi-tape-2); transform: rotate(5deg);"></div>
             <div style="text-align: left;">
@@ -364,6 +490,155 @@
             setTimeout(() => {
                 loading.style.display = 'none';
             }, 500);
+            
+            // Set Jam Digital Pager secara real-time
+            const timeDisplay = document.getElementById('pager-time');
+            const now = new Date();
+            timeDisplay.innerText = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        });
+
+        // --- ENGINE JAVASCRIPT EMULATOR PAGER GENERASI BARU ---
+        const pagerInput = document.getElementById('pager-core-input');
+        const pagerDisplay = document.getElementById('pager-lcd-display');
+        const msgCountDisplay = document.getElementById('pager-msg-count');
+
+        // Pool Kumpulan Kalimat Motivasi Internal Milik Rafa Mandala
+        const rafaMotivations = [
+            "[RAFA M.]: KODING ITU BUKAN CUMA SOAL SINTAKS, TAPI CARA KITA MENGUBAH IMAJINASI MENJADI KENYATAAN!",
+            "[RAFA M.]: JANGAN TAKUT KETEMU ERROR. SETIAP ERROR ADALAH LANGKAH KECIL YANG BIKIN SKILL KITA MAKIN PRO!",
+            "[RAFA M.]: 먹고, 자고, 코딩하고, 반복하세요. 꾸준히 노력하고 매일 새로운 것을 배우세요! 차요!"
+        ];
+
+        // Memori Utama Penyimpanan Dinamis Pager (Dimulai dengan sapaan awal)
+        let pagerInbox = [];
+        let currentMessageIndex = -1; 
+        let isWelcomeState = true; // State awal menyapa pengguna
+
+        // Audio Sirkuit Digital 8-Bit
+        const pagerAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function triggerBeeperSound(pitch, duration, type = 'square') {
+            if (pagerAudioCtx.state === 'suspended') pagerAudioCtx.resume();
+            const osc = pagerAudioCtx.createOscillator();
+            const gainNode = pagerAudioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(pagerAudioCtx.destination);
+            osc.type = type;
+            osc.frequency.setValueAtTime(pitch, pagerAudioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.08, pagerAudioCtx.currentTime);
+            osc.start();
+            setTimeout(() => { osc.stop(); }, duration);
+        }
+
+        function focusPagerInput() {
+            pagerInput.focus();
+        }
+
+        function updatePagerUI() {
+            if (pagerInbox.length === 0) {
+                msgCountDisplay.innerText = `INBOX: EMPTY`;
+                pagerDisplay.innerText = "[SYSTEM]: KOSONG. COBA KETIK SESUATU LALU TEKAN TOMBOL MERAH.";
+            } else {
+                msgCountDisplay.innerText = `MSG: ${currentMessageIndex + 1}/${pagerInbox.length}`;
+                pagerDisplay.innerText = pagerInbox[currentMessageIndex];
+            }
+        }
+
+        // AKSI UTAMA TOMBOL BULAT MERAH (Dua fungsi: Acak Motivasi OR Kirim Pesan Baru)
+        function handleMainButton(e) {
+            e.stopPropagation();
+            const typedText = pagerInput.value.trim().toUpperCase();
+
+            if (typedText !== "") {
+                // JIKA USER LAGI NYETIK: Daftarkan sebagai pesan baru
+                isWelcomeState = false;
+                pagerInbox.push(`[USER]: ${typedText}`);
+                currentMessageIndex = pagerInbox.length - 1;
+                pagerInput.value = ""; // Reset form input rahasia
+                
+                // Bunyi sinyal masuk pesan
+                triggerBeeperSound(3000, 80);
+                setTimeout(() => triggerBeeperSound(3500, 150), 120);
+                updatePagerUI();
+            } else {
+                // JIKA USER GA NYETIK (KOSONG): Munculkan motivasi acak dari Rafa Mandala
+                isWelcomeState = false;
+                const randomIndex = Math.floor(Math.random() * rafaMotivations.length);
+                const selectedQuote = rafaMotivations[randomIndex];
+
+                // Cegah duplikasi berturut-turut agar seru
+                if (pagerInbox.length > 0 && pagerInbox[pagerInbox.length - 1] === selectedQuote) {
+                    handleMainButton(e); // Cari ulang quote lain
+                    return;
+                }
+
+                pagerInbox.push(selectedQuote);
+                currentMessageIndex = pagerInbox.length - 1;
+
+                // Bunyi bip gembira
+                triggerBeeperSound(2600, 70);
+                setTimeout(() => triggerBeeperSound(2600, 70), 100);
+                
+                updatePagerUI();
+            }
+        }
+
+        // Tombol Navigasi PREV dan NEXT
+        function navigateInbox(direction, e) {
+            e.stopPropagation();
+            if (isWelcomeState) {
+                triggerBeeperSound(1000, 100, 'sine');
+                return;
+            }
+
+            let newIndex = currentMessageIndex + direction;
+            if (newIndex >= 0 && newIndex < pagerInbox.length) {
+                currentMessageIndex = newIndex;
+                triggerBeeperSound(2500, 60);
+                updatePagerUI();
+            } else {
+                triggerBeeperSound(1000, 100, 'sine'); // Bunyi batas limit memori
+            }
+        }
+
+        // Tombol CLEAR untuk mengosongkan layar/memori
+        function clearCurrentMessage(e) {
+            e.stopPropagation();
+            triggerBeeperSound(1800, 80);
+            
+            if (pagerInbox.length > 1) {
+                pagerInbox.splice(currentMessageIndex, 1);
+                if (currentMessageIndex >= pagerInbox.length) {
+                    currentMessageIndex = pagerInbox.length - 1;
+                }
+                updatePagerUI();
+            } else {
+                // Balik ke tampilan welcome screen awal
+                isWelcomeState = true;
+                pagerInbox = [];
+                currentMessageIndex = -1;
+                pagerInput.value = "";
+                msgCountDisplay.innerText = `INBOX: 3 MOTIVASI`;
+                pagerDisplay.innerText = "[RAFA M.]: HALO! SAYA RAFA MANDALA. SILAKAN TEKAN TOMBOL MERAH YAA :)...";
+            }
+        }
+
+        // Fitur monitoring ketikan interaktif secara live
+        pagerInput.addEventListener('input', () => {
+            triggerBeeperSound(3800, 15);
+            
+            if (pagerInput.value === "") {
+                if (isWelcomeState) {
+                    pagerDisplay.innerText = "[RAFA M.]: HALO! SAYA RAFA MANDALA. SILAKAN TEKAN TOMBOL MERAH YAA :)...";
+                    msgCountDisplay.innerText = `INBOX: 3 MOTIVASI`;
+                } else {
+                    updatePagerUI();
+                }
+            } else {
+                // Tampilan status saat ada sirkuit tombol keyboard aktif ditekan
+                pagerDisplay.innerText = `WRITING: ${pagerInput.value.toUpperCase()}`;
+                msgCountDisplay.innerText = `MSG: PENDING`;
+            }
         });
     </script>
 
