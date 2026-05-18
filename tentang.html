@@ -122,7 +122,6 @@
             transform: rotate(-0.5deg);
         }
 
-    
         nav { display: flex; justify-content: center; gap: 12px; margin-top: 40px; flex-wrap: wrap; position: relative;}
         
         .nav-link {
@@ -226,13 +225,165 @@
             }
         }
 
+
+        /* --- --- AREA DESAIN EMULATOR MESIN TIK QWERTY + AUDIO --- --- */
         .rating-section {
-            margin-top: 40px; padding: 20px; border-top: 2px dashed #aaa;
-            text-align: center; font-family: 'Courier Prime', monospace;
+            margin-top: 50px; 
+            padding: 25px 15px; 
+            border-top: 2px dashed #aaa;
+            text-align: center;
         }
-        .rating-stars { font-size: 1.5rem; cursor: pointer; margin: 10px 0; }
+
+        .typewriter-hardware-frame {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            border: 5px solid #111;
+            border-radius: 14px;
+            padding: 20px 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+            max-width: 550px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .typewriter-cylinder {
+            background: #222;
+            height: 20px;
+            border-radius: 4px;
+            margin-bottom: -8px;
+            border: 2px solid #333;
+            box-shadow: inset 0 3px 5px rgba(0,0,0,0.6);
+        }
+
+        .typewriter-inner-paper {
+            background: #fcfaf2;
+            padding: 20px;
+            border: 1px solid #e3decb;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            margin: 0 10px 20px 10px;
+            position: relative;
+        }
+
+        .rating-stars { font-size: 1.8rem; cursor: pointer; margin: 5px 0 12px 0; }
         .rating-stars span { transition: transform 0.2s; display: inline-block; }
         .rating-stars span:hover { transform: scale(1.2); }
+
+        .typewriter-textarea {
+            width: 95%;
+            max-width: 400px;
+            height: 70px;
+            padding: 8px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.95rem;
+            background: transparent;
+            border: none;
+            border-bottom: 1px dashed #999;
+            resize: none;
+            color: #111;
+            box-sizing: border-box;
+            letter-spacing: 1px;
+        }
+        .typewriter-textarea:focus { outline: none; }
+
+        #rating-text {
+            font-family: 'Special Elite', monospace;
+            font-size: 0.8rem;
+            color: #b33939;
+            margin-top: 15px;
+            min-height: 20px;
+            line-height: 1.4;
+            letter-spacing: 1px;
+        }
+        #rating-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            font-weight: bold;
+            color: #333;
+            margin-left: 2px;
+        }
+        #rating-text:empty::after { content: ''; }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* --- Papan Keyboard Bulat Klasik --- */
+        .typewriter-qwerty-keyboard {
+            background: #0f141a;
+            padding: 15px 8px;
+            border-radius: 8px;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: inset 0 8px 16px rgba(0,0,0,0.8);
+            margin-bottom: 15px;
+        }
+
+        .tw-keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        /* Tombol Bulat Rim Emas Vintage */
+        .tw-key-caps {
+            background: #151b24;
+            color: #f3edd7;
+            border: 2px solid #d4af37; /* Cincin Emas */
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 4px 0 #000, 0 4px 6px rgba(0,0,0,0.6);
+            transition: transform 0.05s ease;
+        }
+        .tw-key-caps:active, .tw-key-caps.virtual-pressed {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #000;
+            background: #222;
+        }
+
+        .tw-key-caps.wide-backspace {
+            border-radius: 6px;
+            width: 55px;
+            font-size: 0.7rem;
+        }
+
+        /* Tombol Spasi Besi Panjang di Bawah */
+        .typewriter-spacebar-btn {
+            background: linear-gradient(to bottom, #444, #222);
+            border: 2px solid #aaa; /* Chrome Ring Bar */
+            color: #fff;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.85rem;
+            width: 80%;
+            max-width: 320px;
+            padding: 10px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #000, 0 4px 8px rgba(0,0,0,0.5);
+            transition: all 0.05s ease;
+            letter-spacing: 2px;
+        }
+        .typewriter-spacebar-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #000;
+        }
+
+        @media (max-width: 768px) {
+            .tw-key-caps { width: 28px; height: 28px; font-size: 0.75rem; border-width: 1.5px; }
+            .tw-key-caps.wide-backspace { width: 42px; font-size: 0.55rem; }
+            .typewriter-spacebar-btn { font-size: 0.75rem; width: 90%; }
+        }
 
         footer { margin-top: 45px; border-top: 2px dashed #999; padding-top: 25px; text-align: center; font-size: 0.8rem; position: relative;}
 
@@ -277,7 +428,6 @@
     </div>
 
     <div class="marquee-label">
-        
         <marquee scrollamount="6">* RAFA MANDALA * PPLG 2026 * SMK PRESTASI PRIMA * HUMAS PMR * REKAYASA PERANGKAT LUNAK * CODING & ART *</marquee>
     </div>
 
@@ -466,24 +616,76 @@
             </div>
         </div>
 
+
         <div class="rating-section">
-            <span style="font-family: 'Special Elite';">Beri Rating Website Ini:</span>
+            <span style="font-family: 'Special Elite'; font-size: 1.1rem; letter-spacing: 1px;">Beri Rating Website Ini:</span>
+            
             <form id="rating-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <div class="rating-stars" id="rating-stars">
-                    <span onclick="rate(1)">⭐</span>
-                    <span onclick="rate(2)">⭐</span>
-                    <span onclick="rate(3)">⭐</span>
-                    <span onclick="rate(4)">⭐</span>
-                    <span onclick="rate(5)">⭐</span>
+                
+                <div class="typewriter-hardware-frame" onclick="focusTypewriterArea()">
+                    <div class="typewriter-cylinder"></div>
+
+                    <div class="typewriter-inner-paper">
+                        
+                        <div class="rating-stars" id="rating-stars">
+                            <span onclick="rate(1, event)">⭐</span>
+                            <span onclick="rate(2, event)">⭐</span>
+                            <span onclick="rate(3, event)">⭐</span>
+                            <span onclick="rate(4, event)">⭐</span>
+                            <span onclick="rate(5, event)">⭐</span>
+                        </div>
+                        
+                        <input type="hidden" name="rating" id="rating-value" value="5">
+                        
+                        <p style="font-family: 'Courier Prime'; font-size: 0.8rem; color: #555; margin: 5px 0;">Sertakan pesan atau masukan (opsional):</p>
+                        
+                        <textarea name="message" class="typewriter-textarea" id="tw-textarea-input" placeholder="Klik tombol QWERTY di bawah atau ketik langsung..." onkeydown="playKeySound(event)"></textarea>
+                        
+                        <p id="rating-text"></p>
+                    </div>
+
+                    <div class="typewriter-qwerty-keyboard">
+                        <div class="tw-keyboard-row">
+                            <div class="tw-key-caps" onclick="pressVirtualKey('Q', event)">Q</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('W', event)">W</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('E', event)">E</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('R', event)">R</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('T', event)">T</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('Y', event)">Y</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('U', event)">U</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('I', event)">I</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('O', event)">O</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('P', event)">P</div>
+                        </div>
+                        <div class="tw-keyboard-row">
+                            <div class="tw-key-caps" onclick="pressVirtualKey('A', event)">A</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('S', event)">S</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('D', event)">D</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('F', event)">F</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('G', event)">G</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('H', event)">H</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('J', event)">J</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('K', event)">K</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('L', event)">L</div>
+                        </div>
+                        <div class="tw-keyboard-row">
+                            <div class="tw-key-caps" onclick="pressVirtualKey('Z', event)">Z</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('X', event)">X</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('C', event)">C</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('V', event)">V</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('B', event)">B</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('N', event)">N</div>
+                            <div class="tw-key-caps" onclick="pressVirtualKey('M', event)">M</div>
+                            <div class="tw-key-caps wide-backspace" onclick="pressVirtualKey('Backspace', event)">BACK</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="typewriter-spacebar-btn">Kirim Rating via Spasi</button>
                 </div>
-                <input type="hidden" name="rating" id="rating-value" value="5">
-                <p style="font-family: 'Courier Prime'; font-size: 0.85rem;">Sertakan pesan atau masukan (opsional):</p>
-                <textarea name="message" style="width: 80%; max-width: 300px; padding: 8px; font-family: 'Courier Prime'; border: 1px solid #aaa; border-radius: 4px;" placeholder="Tulis masukanmu di sini..."></textarea>
-                <br>
-                <button type="submit" style="margin-top: 10px; padding: 6px 16px; font-family: 'Special Elite'; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">Kirim Rating</button>
+
             </form>
-            <p id="rating-text" style="font-size: 0.75rem; margin-top: 10px; color: #555;"></p>
         </div>
+
 
         <footer>
             <div style="position: absolute; top: -12px; left: 20px; font-size: 1.5rem;">❤️</div>
@@ -503,9 +705,136 @@
             }, 500);
         });
 
-        function rate(stars) {
+        // --- --- ENGINE AUDIO UTK KEYBOARD EMULATOR MESIN TIK (PERBAIKAN TOTAL) --- ---
+        let twAudioCtx;
+
+        function initAudioEngine() {
+            if (!twAudioCtx) {
+                twAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (twAudioCtx.state === 'suspended') {
+                twAudioCtx.resume();
+            }
+        }
+
+        function triggerMechanicalAudio(frequency, duration, volume, waveType = 'triangle') {
+            initAudioEngine();
+            if (!twAudioCtx) return;
+            
+            const osc = twAudioCtx.createOscillator();
+            const gainNode = twAudioCtx.createGain();
+            
+            osc.connect(gainNode);
+            gainNode.connect(twAudioCtx.destination);
+            
+            osc.type = waveType;
+            osc.frequency.setValueAtTime(frequency, twAudioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(frequency / 10, twAudioCtx.currentTime + duration);
+            
+            gainNode.gain.setValueAtTime(volume, twAudioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, twAudioCtx.currentTime + duration);
+            
+            osc.start();
+            osc.stop(twAudioCtx.currentTime + duration);
+        }
+
+        function triggerBelltone() {
+            initAudioEngine();
+            if (!twAudioCtx) return;
+            
+            const osc = twAudioCtx.createOscillator();
+            const gainNode = twAudioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(twAudioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(1400, twAudioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.12, twAudioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, twAudioCtx.currentTime + 0.4);
+            
+            osc.start();
+            osc.stop(twAudioCtx.currentTime + 0.4);
+        }
+
+        // Jalankan audio saat ketik manual lewat keyboard laptop/HP fisik
+        function playKeySound(event) {
+            initAudioEngine(); // Paksa aktifkan sirkuit audio
+            let pressedChar = event.key.toUpperCase();
+            
+            const visualKey = Array.from(document.querySelectorAll('.tw-key-caps')).find(el => el.innerText === pressedChar || (pressedChar === "BACKSPACE" && el.innerText === "BACK"));
+            if (visualKey) {
+                visualKey.classList.add('virtual-pressed');
+                setTimeout(() => visualKey.classList.remove('virtual-pressed'), 100);
+            }
+
+            if (event.key === " ") {
+                triggerMechanicalAudio(90, 0.05, 0.25, 'triangle');
+            } else if (event.key === "Enter" || event.key === "Backspace") {
+                triggerMechanicalAudio(140, 0.04, 0.3, 'sawtooth');
+            } else if (event.key.length === 1) {
+                const randomPitch = 120 + Math.random() * 40;
+                triggerMechanicalAudio(randomPitch, 0.035, 0.22, 'triangle');
+            }
+        }
+
+        // --- KONTROLLER PENGETIKAN VIRTUAL DI LAYAR (MENGATASI BLOCK AUDIO BROWSER) ---
+        const textareaInput = document.getElementById('tw-textarea-input');
+
+        function focusTypewriterArea() {
+            initAudioEngine(); // Setiap bodi diklik, pastikan audio bangkit
+            textareaInput.focus();
+        }
+
+        function pressVirtualKey(character, e) {
+            if (e) e.stopPropagation(); 
+            initAudioEngine(); // Aktifkan sirkuit audio lewat interaksi klik asli
+            
+            if (character === 'Backspace') {
+                textareaInput.value = textareaInput.value.slice(0, -1);
+                triggerMechanicalAudio(140, 0.04, 0.28, 'sawtooth');
+            } else {
+                textareaInput.value += character;
+                const randomPitch = 120 + Math.random() * 40;
+                triggerMechanicalAudio(randomPitch, 0.035, 0.22, 'triangle');
+            }
+            
+            textareaInput.focus();
+        }
+
+
+        // --- ENGINE AUTOMATIC TYPEWRITER NOTIFIKASI ---
+        let typewriterTimeout; 
+
+        function rate(stars, e) {
+            if (e) e.stopPropagation();
+            initAudioEngine(); // Buka gembok audio browser lewat klik bintang
+            
             document.getElementById('rating-value').value = stars;
-            document.getElementById('rating-text').innerText = `Rating Anda: ${stars} ⭐! Tekan tombol 'Kirim Rating' untuk mengirim pesan ke email.`;
+            triggerMechanicalAudio(110, 0.06, 0.35, 'triangle');
+            
+            const targetElement = document.getElementById('rating-text');
+            const fullText = `Rating Anda: ${stars} ⭐! Tekan tombol 'Kirim Rating' untuk mengirim pesan ke email.`;
+            
+            clearTimeout(typewriterTimeout);
+            targetElement.innerText = ""; 
+            
+            let currentIdx = 0;
+            
+            function typeWriterEffect() {
+                if (currentIdx < fullText.length) {
+                    targetElement.innerText += fullText.charAt(currentIdx);
+                    
+                    const autoPitch = 130 + Math.random() * 30;
+                    triggerMechanicalAudio(autoPitch, 0.03, 0.15, 'triangle');
+                    
+                    currentIdx++;
+                    typewriterTimeout = setTimeout(typeWriterEffect, 40);
+                } else {
+                    setTimeout(triggerBelltone, 150);
+                }
+            }
+            
+            typeWriterEffect();
         }
 
         const playlist = [
