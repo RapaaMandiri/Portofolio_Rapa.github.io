@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyek | Rafa Mandala</title>
+    <link rel="icon" type="image/png" href="assets/images/logo1.png" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Homemade+Apple&family=Special+Elite&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Homemade+Apple&family=Special+Elite&display=swap');
 
         :root {
             --bg-desk: #d1c7ac;
@@ -104,7 +105,7 @@
 
         .slider-wrapper img {
             min-width: 100%; height: 100%; object-fit: cover;
-            cursor: zoom-in; /* Menandakan gambar bisa diklik */
+            cursor: zoom-in;
         }
 
         .prev, .next {
@@ -128,7 +129,6 @@
         .project-desc { font-size: 0.9rem; color: #444; margin-top: 10px; }
         .sticker-emoji { position: absolute; font-size: 1.5rem; bottom: 10px; right: 10px; }
 
-        /* --- LIGHTBOX STYLES (DETAIL FOTO) --- */
         #lightbox {
             display: none; position: fixed; z-index: 10000;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -138,6 +138,167 @@
         #lightbox .close-btn {
             position: absolute; top: 20px; right: 30px;
             color: white; font-size: 40px; cursor: pointer; font-family: Arial;
+        }
+
+
+        /* --- --- AREA EMULATOR DIGICAM SONY / CAMCORDER ULTRA 90-an --- --- */
+        .digicam-section-container {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .digicam-body {
+            width: 480px;
+            background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 40%, #64748b 100%);
+            border: 5px solid #334155;
+            border-radius: 12px;
+            padding: 22px 16px;
+            display: inline-block;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.4);
+            position: relative;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .digicam-shutter-button {
+            position: absolute;
+            top: -16px; left: 70px;
+            width: 65px; height: 16px;
+            background: linear-gradient(to bottom, #64748b, #475569);
+            border: 2px solid #1e293b;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+        }
+        .digicam-shutter-button:active { top: -11px; height: 11px; }
+
+        .digicam-screen-area {
+            width: 295px;
+            background: #1e293b;
+            padding: 10px;
+            border-radius: 6px;
+            border: 3px solid #334155;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* Monitor LCD Kuning Sepia Redup Rendah Resolusi */
+        .digicam-lcd-monitor {
+            width: 100%;
+            height: 180px;
+            background: #b1b98c; /* Warna LCD matriks pasif 90an super jadul */
+            border: 3px solid #111;
+            position: relative;
+            color: #0c1202;
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        /* Filter kamera lo-fi beneran hancur pixelated */
+        #digicamViewfinder {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+            display: none;
+            transform: scaleX(-1);
+            filter: contrast(1.5) brightness(0.85) sepia(0.8) hue-rotate(20deg); /* Warna kehijauan kusam kaset pita */
+        }
+
+        /* Overlay Garis CRT Bergetar Bergerak & Noise Kasar */
+        .vhs-scanlines {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.15) 50%, transparent 50%), radial-gradient(rgba(0,0,0,0.08) 1px, transparent 0);
+            background-size: 100% 4px, 3px 3px;
+            z-index: 4;
+            pointer-events: none;
+            animation: staticNoise 0.2s infinite alternate;
+        }
+        @keyframes staticNoise {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(1px); }
+        }
+
+        .digicam-flash-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; opacity: 0; z-index: 10; pointer-events: none;
+        }
+        .digicam-flash-overlay.fired { animation: flashBlink 0.4s ease-out; }
+        @keyframes flashBlink { 0% { opacity: 1; } 100% { opacity: 0; } }
+
+        /* Tampilan OSD Teks Monospace Hitam Pekat Komputer Jadul */
+        .digicam-hud-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5; box-sizing: border-box; padding: 8px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            font-size: 0.65rem;
+            pointer-events: none;
+        }
+
+        .hud-row-top, .hud-row-bottom { display: flex; justify-content: space-between; width: 100%; }
+
+        .hud-center-menu {
+            padding: 4px;
+            margin-top: 10px;
+            width: 100%;
+            pointer-events: auto;
+        }
+        
+        .menu-item-active {
+            color: #b1b98c !important;
+            background: #0c1202;
+            padding: 0px 4px;
+        }
+
+        .nokia-menu-item {
+            color: #0c1202;
+            margin: 4px 0;
+            font-size: 0.56rem;
+        }
+
+        .digicam-control-panel {
+            width: 120px; display: inline-block; margin-left: 14px; vertical-align: top; text-align: center;
+        }
+
+        .digicam-power-led {
+            width: 8px; height: 8px; background: #2ecc71; border-radius: 50%;
+            box-shadow: 0 0 5px #2ecc71; margin: 5px auto 18px auto;
+        }
+
+        .digicam-dpad {
+            width: 85px; height: 85px;
+            background: linear-gradient(135deg, #94a3b8, #475569);
+            border-radius: 50%; border: 3px solid #1e293b;
+            margin: 0 auto; position: relative;
+        }
+
+        .dpad-btn {
+            position: absolute; background: transparent; border: none; cursor: pointer;
+            font-size: 0.7rem; color: #0f172a; font-weight: bold;
+        }
+        .dpad-up { top: 4px; left: 35px; }
+        .dpad-down { bottom: 4px; left: 35px; }
+        .dpad-center {
+            top: 25px; left: 25px; width: 35px; height: 35px;
+            background: #cbd5e1; border: 2px solid #1e293b; border-radius: 50%;
+            font-size: 0.48rem; display: flex; justify-content: center; align-items: center;
+            font-weight: bold; cursor: pointer;
+        }
+
+        .digicam-small-round-btn {
+            width: 25px; height: 25px; background: #475569; border: 1px solid #1e293b;
+            border-radius: 50%; margin-top: 15px; cursor: pointer;
+            color: #fff; font-size: 0.48rem; font-weight: bold;
+            display: inline-flex; justify-content: center; align-items: center; margin: 15px 4px 0 4px;
+        }
+
+        @media (max-width: 768px) {
+            .digicam-body { width: 100%; max-width: 340px; padding: 15px 10px; }
+            .digicam-screen-area { width: 100%; }
+            .digicam-control-panel { width: 100%; margin-left: 0; margin-top: 15px; display: flex; justify-content: space-around;}
+            .digicam-power-led { display: none; }
+            .digicam-shutter-button { left: calc(50% - 32px); }
         }
 
         footer {
@@ -175,7 +336,7 @@
         
         <div class="project-grid">
             
-            <div class="project-card">
+            <div class="project-card" id="card-slider1">
                 <div class="project-tape"></div>
                 <div class="slider-container" id="slider1">
                     <button class="prev" onclick="moveSlide('slider1', -1)">❮</button>
@@ -195,7 +356,7 @@
                 <span class="sticker-emoji">📸</span>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" id="card-slider2">
                 <div class="project-tape" style="background: var(--washi-tape-1);"></div>
                 <div class="slider-container" id="slider2">
                     <button class="prev" onclick="moveSlide('slider2', -1)">❮</button>
@@ -213,7 +374,7 @@
                 <span class="sticker-emoji">🤖</span>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" id="card-slider3">
                 <div class="project-tape" style="background: var(--washi-tape-3);"></div>
                 <div class="slider-container" id="slider3">
                     <button class="prev" onclick="moveSlide('slider3', -1)">❮</button>
@@ -238,6 +399,57 @@
 
         </div>
 
+
+        <div class="digicam-section-container">
+            <p style="font-family:'Special Elite'; font-size:1.1rem; margin-bottom:15px;">Lo-Fi Digicam 90s Project Viewer</p>
+            
+            <div class="digicam-body" onclick="initCamAudioContext()">
+                <button type="button" class="digicam-shutter-button" onclick="triggerCapturePhoto()"></button>
+                
+                <div class="digicam-screen-area">
+                    <div class="digicam-lcd-monitor" id="lcdScreenFrame">
+                        
+                        <video id="digicamViewfinder" autoplay playsinline muted></video>
+                        
+                        <div class="vhs-scanlines"></div>
+                        <div class="digicam-flash-overlay" id="flashGlass"></div>
+
+                        <div class="digicam-hud-layer">
+                            <div class="hud-row-top">
+                                <span id="camModeStatus">OSD HOME</span>
+                                <span>💾 [FLOPPY] 🔋</span>
+                            </div>
+
+                            <div class="hud-center-menu" id="camLcdMenu">
+                                </div>
+
+                            <div class="hud-row-bottom">
+                                <span id="camLiveDate">MAY 18, 1998</span>
+                                <span id="camIsoStatus">F2.8 STBY</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="digicam-control-panel">
+                    <div class="digicam-power-led"></div>
+                    
+                    <div class="digicam-dpad">
+                        <button type="button" class="dpad-btn dpad-up" onclick="clickCamNav(-1)">▲</button>
+                        <button type="button" class="dpad-btn dpad-down" onclick="clickCamNav(1)">▼</button>
+                        <div class="dpad-btn dpad-center" onclick="clickCamSelect()">FUNC<br>SET</div>
+                    </div>
+
+                    <div>
+                        <button type="button" class="digicam-small-round-btn" onclick="triggerCapturePhoto()">📸<br>SNAP</button>
+                        <button type="button" class="digicam-small-round-btn" onclick="resetToCamHome()">🏠<br>MENU</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
         <footer>
             <div><strong>Rafa Mandala</strong><br>© <?php echo date("Y"); ?> PPLG Student</div>
             <div style="font-family: 'Homemade Apple'; font-size: 1.2rem; color: #d63031;">Rafa M.</div>
@@ -249,6 +461,16 @@
             const loading = document.getElementById('loading-screen');
             loading.style.opacity = '0';
             setTimeout(() => { loading.style.display = 'none'; }, 500);
+
+            // Pasang Tahun 90an fiktif estetik di monitor
+            const dateDisplay = document.getElementById('camLiveDate');
+            if (dateDisplay) {
+                const now = new Date();
+                const options = { month: 'short', day: 'numeric' };
+                dateDisplay.innerText = now.toLocaleDateString('en-US', options).toUpperCase() + ", 1998";
+            }
+
+            renderCamLcdDisplay();
         });
 
         const slideIndex = {};
@@ -259,7 +481,6 @@
             const totalSlides = wrapper.querySelectorAll('img').length;
 
             if (slideIndex[sliderId] === undefined) slideIndex[sliderId] = 0;
-
             slideIndex[sliderId] += step;
 
             if (slideIndex[sliderId] >= totalSlides) slideIndex[sliderId] = 0;
@@ -269,7 +490,6 @@
             wrapper.style.transform = `translateX(${offset}%)`;
         }
 
-        // Fungsi Detail Foto
         function openLightbox(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
@@ -277,6 +497,285 @@
 
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
+        }
+
+
+        // --- --- CORE ENGINE EMULATOR RETRO LO-FI DIGICAM 90s + CAPTURE OVERLAY --- ---
+        let camAudioCtx;
+        let camCurrentMenuPos = 0;
+        let camCurrentSubProjectPos = 0;
+        let camCurrentState = 'MENU_UTAMA'; 
+        let cameraStreamObject = null;
+
+        const mainTwoMenus = [
+            { code: "PROJEK", name: "[1] WORK GALLERY" },
+            { code: "KAMERA", name: "[2] LIVE CAMERA" }
+        ];
+
+        const camProjectListData = [
+            { id: "slider1", name: "-> WEBCAM AZUNYAA", tech: "HTML5 Webcam photobox framework." },
+            { id: "slider2", name: "-> CHATBOX AI", tech: "Python backend, Google AI Studio API." },
+            { id: "slider3", name: "-> PHOTO GALLERY", tech: "Lanskap repository system DKI Jakarta." }
+        ];
+
+        function initCamAudioContext() {
+            if (!camAudioCtx) {
+                camAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (camAudioCtx.state === 'suspended') camAudioCtx.resume();
+        }
+
+        function playCamBeepSound(frequency, duration, volume) {
+            initCamAudioContext();
+            if (!camAudioCtx) return;
+
+            const osc = camAudioCtx.createOscillator();
+            const gain = camAudioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(camAudioCtx.destination);
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(frequency, camAudioCtx.currentTime);
+            gain.gain.setValueAtTime(volume, camAudioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, camAudioCtx.currentTime + duration);
+
+            osc.start();
+            osc.stop(camAudioCtx.currentTime + duration);
+        }
+
+        async function startCameraHardware() {
+            const videoElement = document.getElementById('digicamViewfinder');
+            if (cameraStreamObject) return;
+
+            try {
+                cameraStreamObject = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "user" },
+                    audio: false
+                });
+                videoElement.srcObject = cameraStreamObject;
+                videoElement.style.display = 'block';
+            } catch (err) {
+                console.log("Kamera tidak diizinkan browser.");
+            }
+        }
+
+        function stopCameraHardware() {
+            const videoElement = document.getElementById('digicamViewfinder');
+            if (cameraStreamObject) {
+                cameraStreamObject.getTracks().forEach(track => track.stop());
+                cameraStreamObject = null;
+            }
+            videoElement.srcObject = null;
+            videoElement.style.display = 'none';
+        }
+
+        function renderCamLcdDisplay() {
+            const menuContainer = document.getElementById('camLcdMenu');
+            const modeStatus = document.getElementById('camModeStatus');
+            const isoStatus = document.getElementById('camIsoStatus');
+            const lcdFrame = document.getElementById('lcdScreenFrame');
+
+            if (camCurrentState === 'MENU_UTAMA') {
+                stopCameraHardware();
+                lcdFrame.style.background = "#b1b98c"; 
+                modeStatus.innerText = "OSD HOME";
+                isoStatus.innerText = "F2.8 STBY";
+                
+                let innerHtml = `
+                    <div style="color:#0c1202; font-weight:bold; font-size:0.62rem; margin-bottom:8px; border-bottom:2px solid #0c1202; width:fit-content;">AZUNYAA OS v1.0</div>
+                `;
+                mainTwoMenus.forEach((item, index) => {
+                    innerHtml += `<div class="nokia-menu-item ${index === camCurrentMenuPos ? 'menu-item-active' : ''}">${item.name}</div>`;
+                });
+                menuContainer.innerHTML = innerHtml;
+            } 
+            else if (camCurrentState === 'LIST_PROJEK') {
+                let innerHtml = `<div style="border-bottom:1px solid #0c1202; font-weight:bold; margin-bottom:4px; font-size:0.5rem;">INDEX SELECT:</div>`;
+                camProjectListData.forEach((item, index) => {
+                    innerHtml += `<div class="nokia-menu-item ${index === camCurrentSubProjectPos ? 'menu-item-active' : ''}">${item.name}</div>`;
+                });
+                menuContainer.innerHTML = innerHtml;
+            }
+            else if (camCurrentState === 'PREVIEW_DETAIL') {
+                modeStatus.innerText = "PREVIEW";
+                isoStatus.innerText = "DATA OK";
+                const currentProj = camProjectListData[camCurrentSubProjectPos];
+                
+                menuContainer.innerHTML = `
+                    <div style="border:1px solid #0c1202; padding:4px; background:rgba(0,0,0,0.05);">
+                        <div style="font-weight:bold; font-size:0.52rem; text-decoration:underline; margin-bottom:2px;">TECH SPEC:</div>
+                        <div style="font-size:0.48rem; line-height:1.2; color:#0c1202;">${currentProj.tech}</div>
+                        <div style="margin-top:4px; background:#0c1202; color:#b1b98c; padding:0 3px; width:fit-content; font-size:0.45rem;">[SET]: TELEPORT</div>
+                    </div>
+                `;
+            }
+            else if (camCurrentState === 'KAMERA_LIVE') {
+                startCameraHardware();
+                lcdFrame.style.background = "transparent"; 
+                modeStatus.innerText = "● REC";
+                isoStatus.innerText = "VGA 16BIT";
+                
+                menuContainer.innerHTML = `
+                    <div style="border:1px solid #0c1202; height:50px; margin-top:8px; display:flex; justify-content:center; align-items:center;">
+                        <span style="font-size:0.7rem; color:#0c1202; opacity:0.6;">[ + ]</span>
+                    </div>
+                `;
+            }
+        }
+
+        function clickCamNav(direction) {
+            playCamBeepSound(1800, 0.04, 0.06);
+            
+            if (camCurrentState === 'MENU_UTAMA') {
+                camCurrentMenuPos += direction;
+                if (camCurrentMenuPos >= mainTwoMenus.length) camCurrentMenuPos = 0;
+                if (camCurrentMenuPos < 0) camCurrentMenuPos = mainTwoMenus.length - 1;
+                renderCamLcdDisplay();
+            } 
+            else if (camCurrentState === 'LIST_PROJEK') {
+                camCurrentSubProjectPos += direction;
+                if (camCurrentSubProjectPos >= camProjectListData.length) camCurrentSubProjectPos = 0;
+                if (camCurrentSubProjectPos < 0) camCurrentSubProjectPos = camProjectListData.length - 1;
+                renderCamLcdDisplay();
+            }
+        }
+
+        function clickCamSelect() {
+            if (camCurrentState === 'MENU_UTAMA') {
+                playCamBeepSound(2200, 0.05, 0.06);
+                if (mainTwoMenus[camCurrentMenuPos].code === 'PROJEK') {
+                    camCurrentState = 'LIST_PROJEK';
+                } else {
+                    camCurrentState = 'KAMERA_LIVE';
+                }
+                renderCamLcdDisplay();
+            } 
+            else if (camCurrentState === 'LIST_PROJEK') {
+                playCamBeepSound(2300, 0.05, 0.06);
+                camCurrentState = 'PREVIEW_DETAIL';
+                renderCamLcdDisplay();
+            }
+            else if (camCurrentState === 'PREVIEW_DETAIL') {
+                playCamBeepSound(2600, 0.07, 0.08);
+                const targetCard = document.getElementById('card-' + camProjectListData[camCurrentSubProjectPos].id);
+                if (targetCard) {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        function resetToCamHome() {
+            playCamBeepSound(1300, 0.05, 0.06);
+            if (camCurrentState === 'PREVIEW_DETAIL') {
+                camCurrentState = 'LIST_PROJEK';
+            } else {
+                camCurrentState = 'MENU_UTAMA';
+            }
+            renderCamLcdDisplay();
+        }
+
+        // --- SISTEM MEKANIK JEPRET FOTO + AUTOMATIC CAPTURE DAN MERGE OVERLAY HUD ---
+        function triggerCapturePhoto() {
+            initCamAudioContext();
+            
+            const flashOverlay = document.getElementById('flashGlass');
+            flashOverlay.classList.remove('fired');
+            void flashOverlay.offsetWidth; 
+            flashOverlay.classList.add('fired');
+
+            // Bunyi Mekanik Shutter Besi Kamera Poket
+            if (camAudioCtx) {
+                triggerShutterClickSfx(800, 0.05, 0.35, 'triangle');
+                setTimeout(() => {
+                    triggerShutterClickSfx(250, 0.06, 0.25, 'sawtooth');
+                }, 40);
+            }
+
+            // Jika dalam mode kamera live, lakukan proses penangkapan gambar & merge bingkai HUD
+            if (camCurrentState === 'KAMERA_LIVE') {
+                captureAndSaveDigicamPhoto();
+            }
+        }
+
+        function triggerShutterClickSfx(frequency, duration, volume, waveType) {
+            if (!camAudioCtx) return;
+            const osc = camAudioCtx.createOscillator();
+            const gain = camAudioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(camAudioCtx.destination);
+
+            osc.type = waveType;
+            osc.frequency.setValueAtTime(frequency, camAudioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(20, camAudioCtx.currentTime + duration);
+
+            gain.gain.setValueAtTime(volume, camAudioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, camAudioCtx.currentTime + duration);
+
+            osc.start();
+            osc.stop(camAudioCtx.currentTime + duration);
+        }
+
+        function captureAndSaveDigicamPhoto() {
+            const video = document.getElementById('digicamViewfinder');
+            
+            // Buat canvas bayangan penampung pemrosesan ukuran pas dengan frame layar monitor (290x180)
+            const captureCanvas = document.createElement('canvas');
+            captureCanvas.width = 290;
+            captureCanvas.height = 180;
+            const canvasCtx = captureCanvas.getContext('2d');
+
+            // 1. Gambar Video Feed (Dengan Mirroring Efek Cermin agar Alami)
+            canvasCtx.translate(captureCanvas.width, 0);
+            canvasCtx.scale(-1, 1);
+            canvasCtx.drawImage(video, 0, 0, captureCanvas.width, captureCanvas.height);
+            canvasCtx.setTransform(1, 0, 0, 1, 0, 0); // Kembalikan koordinat normal canvas
+
+            // 2. Tembak Filter Warna Jadul 90an Lo-Fi Ke Atas Gambar Canvas
+            let imgData = canvasCtx.getImageData(0, 0, captureCanvas.width, captureCanvas.height);
+            let data = imgData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                let r = data[i], g = data[i+1], b = data[i+2];
+                // Formula Efek Kombinasi Sepia + Tint Hijau LCD Kusam Lama
+                let sepiaR = (r * 0.393) + (g * 0.769) + (b * 0.189);
+                let sepiaG = (r * 0.349) + (g * 0.686) + (b * 0.168);
+                let sepiaB = (r * 0.272) + (g * 0.534) + (b * 0.131);
+                
+                // Beri kontras kasar tambahan agar pecah ala 16-bit camcorder
+                data[i]     = Math.min(255, sepiaR * 0.9);
+                data[i+1]   = Math.min(255, sepiaG * 1.1); // Kuatkan unsur warna hijau
+                data[i+2]   = Math.min(255, sepiaB * 0.7);
+            }
+            canvasCtx.putImageData(imgData, 0, 0);
+
+            // 3. Lukis Lapisan Garis Scanline Garis CRT Tabung Kuno
+            canvasCtx.fillStyle = "rgba(0, 0, 0, 0.08)";
+            for (let y = 0; y < captureCanvas.height; y += 4) {
+                canvasCtx.fillRect(0, y, captureCanvas.width, 2);
+            }
+
+            // 4. Gambar Cetakan Tulisan Teks Overlay Bingkai HUD OSD Kamera
+            canvasCtx.fillStyle = "#0c1202"; // Warna font hitam pekat komputer purba
+            canvasCtx.font = "bold 10px monospace";
+            
+            // HUD Baris Atas
+            canvasCtx.fillText("● REC", 10, 18);
+            canvasCtx.fillText("💾 [FLOPPY] 🔋", 185, 18);
+            
+            // Crosshair Tengah Bidikan
+            canvasCtx.font = "14px monospace";
+            canvasCtx.fillText("[ + ]", 125, 95);
+            
+            // HUD Baris Bawah
+            canvasCtx.font = "bold 10px monospace";
+            const currentYearStr = document.getElementById('camLiveDate').innerText;
+            canvasCtx.fillText(currentYearStr, 10, 168);
+            canvasCtx.fillText("VGA 16BIT", 215, 168);
+
+            // 5. Trigger Sistem Unduh Gambar PNG Otomatis
+            const link = document.createElement('a');
+            link.download = 'digicam-1998.png';
+            link.href = captureCanvas.toDataURL('image/png');
+            link.click();
         }
     </script>
 </body>
