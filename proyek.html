@@ -141,170 +141,119 @@
         }
 
 
-        /* --- --- AREA EMULATOR DIGICAM SONY / CAMCORDER ULTRA 90-an --- --- */
-        .digicam-section-container {
+        /* --- --- AREA EMULATOR GBA HORIZONTAL CODES --- --- */
+        .gba-section-container {
             margin-top: 60px;
             text-align: center;
         }
 
-        .digicam-body {
-            width: 480px;
-            background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 40%, #64748b 100%);
-            border: 5px solid #334155;
-            border-radius: 12px;
-            padding: 22px 16px;
+        .gba-body {
+            width: 520px;
+            height: 260px;
+            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%); 
+            border: 5px solid #d35400;
+            border-radius: 24px 24px 45px 45px;
             display: inline-block;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.4);
+            box-shadow: 0 22px 40px rgba(0,0,0,0.3), inset 0 3px 5px rgba(255,255,255,0.6);
             position: relative;
-            text-align: left;
             box-sizing: border-box;
+            padding: 15px;
+            transform: rotate(-0.5deg);
         }
 
-        .digicam-shutter-button {
-            position: absolute;
-            top: -16px; left: 70px;
-            width: 65px; height: 16px;
-            background: linear-gradient(to bottom, #64748b, #475569);
-            border: 2px solid #1e293b;
-            border-bottom: none;
-            border-radius: 5px 5px 0 0;
-            cursor: pointer;
-        }
-        .digicam-shutter-button:active { top: -11px; height: 11px; }
-
-        .digicam-screen-area {
-            width: 295px;
-            background: #1e293b;
-            padding: 10px;
+        .gba-screen-bezel {
+            width: 270px;
+            height: 190px;
+            background: #2c3e50;
+            border: 3px solid #1a252f;
             border-radius: 6px;
-            border: 3px solid #334155;
-            display: inline-block;
-            vertical-align: top;
+            position: absolute;
+            top: 30px;
+            left: 125px;
+            box-sizing: border-box;
+            padding: 15px 12px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
 
-        /* Monitor LCD Kuning Sepia Redup Rendah Resolusi */
-        .digicam-lcd-monitor {
+        .gba-screen-logo {
+            color: #95a5a6; font-family: sans-serif; font-size: 0.45rem; font-style: italic; font-weight: bold; letter-spacing: 1px; text-align: center; margin-top: 4px;
+        }
+
+        .gba-lcd-screen {
             width: 100%;
-            height: 180px;
-            background: #b1b98c; /* Warna LCD matriks pasif 90an super jadul */
+            height: 135px;
+            background: #8fa382; 
             border: 3px solid #111;
+            box-sizing: border-box;
             position: relative;
-            color: #0c1202;
             font-family: 'Courier Prime', monospace;
-            font-weight: bold;
+            color: #1e2716;
+            padding: 5px;
             overflow: hidden;
         }
 
-        /* Filter kamera lo-fi beneran hancur pixelated */
-        #digicamViewfinder {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0; left: 0;
-            display: none;
-            transform: scaleX(-1);
-            filter: contrast(1.5) brightness(0.85) sepia(0.8) hue-rotate(20deg); /* Warna kehijauan kusam kaset pita */
+        .gba-lcd-screen::before {
+            content: " "; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.05) 50%, transparent 50%), linear-gradient(90deg, rgba(0,0,0,0.05) 50%, transparent 50%);
+            background-size: 2px 2px; pointer-events: none; z-index: 10;
         }
 
-        /* Overlay Garis CRT Bergetar Bergerak & Noise Kasar */
-        .vhs-scanlines {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.15) 50%, transparent 50%), radial-gradient(rgba(0,0,0,0.08) 1px, transparent 0);
-            background-size: 100% 4px, 3px 3px;
-            z-index: 4;
-            pointer-events: none;
-            animation: staticNoise 0.2s infinite alternate;
-        }
-        @keyframes staticNoise {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(1px); }
+        .gba-game-viewport {
+            width: 100%; height: 100%; display: flex; flex-direction: column; box-sizing: border-box;
         }
 
-        .digicam-flash-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; opacity: 0; z-index: 10; pointer-events: none;
+        .gba-project-img-frame {
+            width: 100%; height: 65px; border: 1px solid #1e2716; overflow: hidden; background: #7d8f70; position: relative;
         }
-        .digicam-flash-overlay.fired { animation: flashBlink 0.4s ease-out; }
-        @keyframes flashBlink { 0% { opacity: 1; } 100% { opacity: 0; } }
+        .gba-project-img-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.4) contrast(1.3) brightness(0.95); }
 
-        /* Tampilan OSD Teks Monospace Hitam Pekat Komputer Jadul */
-        .digicam-hud-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 5; box-sizing: border-box; padding: 8px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            font-size: 0.65rem;
-            pointer-events: none;
+        .gba-project-text-box { font-size: 0.45rem; line-height: 1.2; margin-top: 3px; height: 52px; overflow-y: hidden; position: relative; }
+
+        /* Canvas Game Ular Retro */
+        #gbaSnakeCanvas {
+            background: transparent; display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0;
         }
 
-        .hud-row-top, .hud-row-bottom { display: flex; justify-content: space-between; width: 100%; }
+        /* --- Sisi Kontrol Tombol Sebelah Kiri (D-Pad Silang) --- */
+        .gba-left-controls { position: absolute; top: 75px; left: 20px; width: 85px; height: 85px; }
+        .gba-dpad-cross { width: 76px; height: 76px; position: relative; }
+        .dpad-axis { background: #222; position: absolute; border-radius: 3px; box-shadow: 0 3px 0 #000; }
+        .dpad-axis-v { width: 24px; height: 72px; left: 24px; top: 0; }
+        .dpad-axis-h { width: 72px; height: 24px; left: 0; top: 24px; }
 
-        .hud-center-menu {
-            padding: 4px;
-            margin-top: 10px;
-            width: 100%;
-            pointer-events: auto;
-        }
-        
-        .menu-item-active {
-            color: #b1b98c !important;
-            background: #0c1202;
-            padding: 0px 4px;
-        }
+        .dpad-clicker { position: absolute; z-index: 15; cursor: pointer; }
+        .dpad-clicker:active { transform: scale(0.95); }
+        .clicker-up { top: 0; left: 24px; width: 24px; height: 24px; }
+        .clicker-down { bottom: 0; left: 24px; width: 24px; height: 24px; }
+        .clicker-left { top: 24px; left: 0; width: 24px; height: 24px; }
+        .clicker-right { top: 24px; right: 0; width: 24px; height: 24px; }
+        .dpad-label-arrow { position: absolute; z-index: 5; color: #555; font-size: 0.5rem; font-weight: bold; pointer-events: none; }
 
-        .nokia-menu-item {
-            color: #0c1202;
-            margin: 4px 0;
-            font-size: 0.56rem;
+        /* --- Sisi Kontrol Tombol Sebelah Kanan (A / B) --- */
+        .gba-right-controls { position: absolute; top: 85px; right: 15px; width: 95px; height: 80px; transform: rotate(-12deg); }
+        .gba-circle-btn {
+            width: 36px; height: 36px; background: #c0392b; border-radius: 50%; border: 2px solid #222;
+            display: inline-flex; justify-content: center; align-items: center; color: #fff;
+            font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 0 #7f2d22, 0 4px 5px rgba(0,0,0,0.3); user-select: none;
         }
+        .gba-circle-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #7f2d22; }
 
-        .digicam-control-panel {
-            width: 120px; display: inline-block; margin-left: 14px; vertical-align: top; text-align: center;
-        }
-
-        .digicam-power-led {
-            width: 8px; height: 8px; background: #2ecc71; border-radius: 50%;
-            box-shadow: 0 0 5px #2ecc71; margin: 5px auto 18px auto;
-        }
-
-        .digicam-dpad {
-            width: 85px; height: 85px;
-            background: linear-gradient(135deg, #94a3b8, #475569);
-            border-radius: 50%; border: 3px solid #1e293b;
-            margin: 0 auto; position: relative;
-        }
-
-        .dpad-btn {
-            position: absolute; background: transparent; border: none; cursor: pointer;
-            font-size: 0.7rem; color: #0f172a; font-weight: bold;
-        }
-        .dpad-up { top: 4px; left: 35px; }
-        .dpad-down { bottom: 4px; left: 35px; }
-        .dpad-center {
-            top: 25px; left: 25px; width: 35px; height: 35px;
-            background: #cbd5e1; border: 2px solid #1e293b; border-radius: 50%;
-            font-size: 0.48rem; display: flex; justify-content: center; align-items: center;
-            font-weight: bold; cursor: pointer;
-        }
-
-        .digicam-small-round-btn {
-            width: 25px; height: 25px; background: #475569; border: 1px solid #1e293b;
-            border-radius: 50%; margin-top: 15px; cursor: pointer;
-            color: #fff; font-size: 0.48rem; font-weight: bold;
-            display: inline-flex; justify-content: center; align-items: center; margin: 15px 4px 0 4px;
-        }
+        /* --- Tombol Karet Select & Start Di Bawah --- */
+        .gba-bottom-controls { position: absolute; bottom: 12px; left: 190px; display: flex; gap: 25px; }
+        .gba-pill-btn { width: 38px; height: 8px; background: #7f8c8d; border: 1px solid #222; border-radius: 4px; cursor: pointer; box-shadow: 0 2px 0 #555; }
+        .gba-pill-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #555; }
+        .pill-label { font-size: 0.38rem; font-weight: bold; color: #2c3e50; text-align: center; margin-top: 1px; font-family: sans-serif;}
 
         @media (max-width: 768px) {
-            .digicam-body { width: 100%; max-width: 340px; padding: 15px 10px; }
-            .digicam-screen-area { width: 100%; }
-            .digicam-control-panel { width: 100%; margin-left: 0; margin-top: 15px; display: flex; justify-content: space-around;}
-            .digicam-power-led { display: none; }
-            .digicam-shutter-button { left: calc(50% - 32px); }
+            .gba-body { width: 100%; max-width: 340px; height: 360px; padding: 10px; }
+            .gba-screen-bezel { width: 90%; left: 5%; top: 15px; height: 180px;}
+            .gba-left-controls { bottom: 20px; top: auto; left: 20px; }
+            .gba-right-controls { bottom: 25px; top: auto; right: 10px; }
+            .gba-bottom-controls { bottom: 120px; left: calc(50% - 50px); }
         }
 
-        footer {
-            margin-top: 60px; padding: 20px; border-top: 1px dashed #ccc;
-            display: flex; justify-content: space-between; font-family: 'Special Elite';
-        }
+        footer { margin-top: 60px; padding: 20px; border-top: 1px dashed #ccc; display: flex; justify-content: space-between; font-family: 'Special Elite'; }
     </style>
 </head>
 <body>
@@ -400,50 +349,43 @@
         </div>
 
 
-        <div class="digicam-section-container">
-            <p style="font-family:'Special Elite'; font-size:1.1rem; margin-bottom:15px;">Lo-Fi Digicam 90s Project Viewer</p>
+        <div class="gba-section-container">
+            <p style="font-family:'Special Elite'; font-size:1.1rem; margin-bottom:15px;">Retro GBA Gaming & Portfolio Center</p>
             
-            <div class="digicam-body" onclick="initCamAudioContext()">
-                <button type="button" class="digicam-shutter-button" onclick="triggerCapturePhoto()"></button>
+            <div class="gba-body" id="gbaConsoleBody" onclick="initGbaAudioContext()">
                 
-                <div class="digicam-screen-area">
-                    <div class="digicam-lcd-monitor" id="lcdScreenFrame">
-                        
-                        <video id="digicamViewfinder" autoplay playsinline muted></video>
-                        
-                        <div class="vhs-scanlines"></div>
-                        <div class="digicam-flash-overlay" id="flashGlass"></div>
-
-                        <div class="digicam-hud-layer">
-                            <div class="hud-row-top">
-                                <span id="camModeStatus">OSD HOME</span>
-                                <span>💾 [FLOPPY] 🔋</span>
-                            </div>
-
-                            <div class="hud-center-menu" id="camLcdMenu">
-                                </div>
-
-                            <div class="hud-row-bottom">
-                                <span id="camLiveDate">MAY 18, 1998</span>
-                                <span id="camIsoStatus">F2.8 STBY</span>
-                            </div>
+                <div class="gba-screen-bezel">
+                    <div class="gba-lcd-screen" id="gbaLcdFrame">
                         </div>
+                    <canvas id="gbaSnakeCanvas" width="246" height="125"></canvas>
+                    <div class="gba-screen-logo">GAME BOY ADVANCE</div>
+                </div>
+
+                <div class="gba-left-controls">
+                    <div class="gba-dpad-cross">
+                        <div class="dpad-axis dpad-axis-v"></div>
+                        <div class="dpad-axis dpad-axis-h"></div>
+                        
+                        <div class="dpad-label-arrow" style="top:2px; left:9px;">▲</div>
+                        <div class="dpad-label-arrow" style="bottom:2px; left:9px;">▼</div>
+                        <div class="dpad-label-arrow" style="top:7px; left:2px;">◀</div>
+                        <div class="dpad-label-arrow" style="top:7px; right:2px;">▶</div>
+
+                        <div class="dpad-clicker clicker-up" onclick="controlGbaHardware('UP')"></div>
+                        <div class="dpad-clicker clicker-down" onclick="controlGbaHardware('DOWN')"></div>
+                        <div class="dpad-clicker clicker-left" onclick="controlGbaHardware('LEFT')"></div>
+                        <div class="dpad-clicker clicker-right" onclick="controlGbaHardware('RIGHT')"></div>
                     </div>
                 </div>
 
-                <div class="digicam-control-panel">
-                    <div class="digicam-power-led"></div>
-                    
-                    <div class="digicam-dpad">
-                        <button type="button" class="dpad-btn dpad-up" onclick="clickCamNav(-1)">▲</button>
-                        <button type="button" class="dpad-btn dpad-down" onclick="clickCamNav(1)">▼</button>
-                        <div class="dpad-btn dpad-center" onclick="clickCamSelect()">FUNC<br>SET</div>
-                    </div>
+                <div class="gba-right-controls">
+                    <div class="gba-circle-btn" style="margin-right:12px;" onclick="controlGbaHardware('B')">B</div>
+                    <div class="gba-circle-btn" onclick="controlGbaHardware('A')">A</div>
+                </div>
 
-                    <div>
-                        <button type="button" class="digicam-small-round-btn" onclick="triggerCapturePhoto()">📸<br>SNAP</button>
-                        <button type="button" class="digicam-small-round-btn" onclick="resetToCamHome()">🏠<br>MENU</button>
-                    </div>
+                <div class="gba-bottom-controls">
+                    <div><div class="gba-pill-btn" onclick="controlGbaHardware('B')"></div><div class="pill-label">SELECT</div></div>
+                    <div><div class="gba-pill-btn" onclick="controlGbaHardware('START')"></div><div class="pill-label">START</div></div>
                 </div>
 
             </div>
@@ -462,15 +404,7 @@
             loading.style.opacity = '0';
             setTimeout(() => { loading.style.display = 'none'; }, 500);
 
-            // Pasang Tahun 90an fiktif estetik di monitor
-            const dateDisplay = document.getElementById('camLiveDate');
-            if (dateDisplay) {
-                const now = new Date();
-                const options = { month: 'short', day: 'numeric' };
-                dateDisplay.innerText = now.toLocaleDateString('en-US', options).toUpperCase() + ", 1998";
-            }
-
-            renderCamLcdDisplay();
+            renderGbaLcdDisplay();
         });
 
         const slideIndex = {};
@@ -500,282 +434,270 @@
         }
 
 
-        // --- --- CORE ENGINE EMULATOR RETRO LO-FI DIGICAM 90s + CAPTURE OVERLAY --- ---
-        let camAudioCtx;
-        let camCurrentMenuPos = 0;
-        let camCurrentSubProjectPos = 0;
-        let camCurrentState = 'MENU_UTAMA'; 
-        let cameraStreamObject = null;
+        // --- --- ENGINE EMULATOR GAME BOY ADVANCE LIVE SYSTEM MULTIMODE --- ---
+        let gbaAudioCtx;
+        let gbaSelectedGameIdx = 0; 
+        let gbaCurrentImageIdx = 0; 
+        let gbaTextScrollTop = 0;   
+        
+        // Mode GBA: BIOS_INTRO, SELEKSI_MENU, GAME_PLAYING (Portofolio View), SNAKE_MINIGAME, SNAKE_GAMEOVER
+        let gbaCurrentState = 'BIOS_INTRO'; 
 
-        const mainTwoMenus = [
-            { code: "PROJEK", name: "[1] WORK GALLERY" },
-            { code: "KAMERA", name: "[2] LIVE CAMERA" }
-        ];
+        // Variabel Core Game Ular 8-bit
+        let snakeCanvas, snakeCtx, snakeBody, snakeFood, sDx, sDy, snakeScore, snakeInterval;
 
-        const camProjectListData = [
-            { id: "slider1", name: "-> WEBCAM AZUNYAA", tech: "HTML5 Webcam photobox framework." },
-            { id: "slider2", name: "-> CHATBOX AI", tech: "Python backend, Google AI Studio API." },
-            { id: "slider3", name: "-> PHOTO GALLERY", tech: "Lanskap repository system DKI Jakarta." }
-        ];
-
-        function initCamAudioContext() {
-            if (!camAudioCtx) {
-                camAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const gbaConsoleGamesData = [
+            {
+                id: "slider1", title: "WEBCAM AZUNYAA",
+                desc: "Webcam Azunyaa adalah sistem photobox berbasis web. User bisa mengambil foto selfie secara live dari kamera laptop/HP. Framework: HTML5, JS MediaStream API, Bootstrap.",
+                images: ["assets/imageproject/ptx2.png", "assets/imageproject/ptx1.png", "assets/imageproject/ptx3.png"]
+            },
+            {
+                id: "slider2", title: "CHATBOX AI PYTHON",
+                desc: "Azunya AI adalah bot pintar asisten pengodean berbasis kecerdasan buatan. Terkoneksi penuh dengan API Google AI Studio via backend Python. Teknologi: Python, Flask, CSS UI.",
+                images: ["assets/imageproject/ctbx1.png", "assets/imageproject/ctbx2.png", "assets/imageproject/ctbx3.png"]
+            },
+            {
+                id: "slider3", title: "PHOTO GALLERY JKT",
+                desc: "Sistem galeri foto berskala besar untuk menampung keindahan lanskap tata kota DKI Jakarta. Mendukung upload multi-file gambar responsif. Framework: PHP Native, MySQL, Tailwind.",
+                images: ["assets/imageproject/gly1.png", "assets/imageproject/gly2.png", "assets/imageproject/gly3.png"]
             }
-            if (camAudioCtx.state === 'suspended') camAudioCtx.resume();
+        ];
+
+        function initGbaAudioContext() {
+            if (!gbaAudioCtx) {
+                gbaAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (gbaAudioCtx.state === 'suspended') gbaAudioCtx.resume();
         }
 
-        function playCamBeepSound(frequency, duration, volume) {
-            initCamAudioContext();
-            if (!camAudioCtx) return;
+        function playGbaSoundTone(freq, duration, volume, type = 'square') {
+            initGbaAudioContext();
+            if (!gbaAudioCtx) return;
 
-            const osc = camAudioCtx.createOscillator();
-            const gain = camAudioCtx.createGain();
+            const osc = gbaAudioCtx.createOscillator();
+            const gain = gbaAudioCtx.createGain();
             osc.connect(gain);
-            gain.connect(camAudioCtx.destination);
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(frequency, camAudioCtx.currentTime);
-            gain.gain.setValueAtTime(volume, camAudioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, camAudioCtx.currentTime + duration);
-
+            gain.connect(gbaAudioCtx.destination);
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, gbaAudioCtx.currentTime);
+            gain.gain.setValueAtTime(volume, gbaAudioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, gbaAudioCtx.currentTime + duration);
             osc.start();
-            osc.stop(camAudioCtx.currentTime + duration);
+            osc.stop(gbaAudioCtx.currentTime + duration);
         }
 
-        async function startCameraHardware() {
-            const videoElement = document.getElementById('digicamViewfinder');
-            if (cameraStreamObject) return;
+        function playNintyIntroChime() {
+            playGbaSoundTone(523.25, 0.08, 0.04, 'square'); 
+            setTimeout(() => { playGbaSoundTone(1046.50, 0.35, 0.05, 'square'); }, 90);
+        }
 
-            try {
-                cameraStreamObject = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user" },
-                    audio: false
-                });
-                videoElement.srcObject = cameraStreamObject;
-                videoElement.style.display = 'block';
-            } catch (err) {
-                console.log("Kamera tidak diizinkan browser.");
+        function renderGbaLcdDisplay() {
+            const lcd = document.getElementById('gbaLcdFrame');
+            const sCanvas = document.getElementById('gbaSnakeCanvas');
+
+            // Manajemen visibilitas canvas game ular
+            if (gbaCurrentState !== 'SNAKE_MINIGAME' && snakeInterval) {
+                clearInterval(snakeInterval);
+                sCanvas.style.display = 'none';
+                lcd.style.display = 'block';
             }
-        }
 
-        function stopCameraHardware() {
-            const videoElement = document.getElementById('digicamViewfinder');
-            if (cameraStreamObject) {
-                cameraStreamObject.getTracks().forEach(track => track.stop());
-                cameraStreamObject = null;
-            }
-            videoElement.srcObject = null;
-            videoElement.style.display = 'none';
-        }
-
-        function renderCamLcdDisplay() {
-            const menuContainer = document.getElementById('camLcdMenu');
-            const modeStatus = document.getElementById('camModeStatus');
-            const isoStatus = document.getElementById('camIsoStatus');
-            const lcdFrame = document.getElementById('lcdScreenFrame');
-
-            if (camCurrentState === 'MENU_UTAMA') {
-                stopCameraHardware();
-                lcdFrame.style.background = "#b1b98c"; 
-                modeStatus.innerText = "OSD HOME";
-                isoStatus.innerText = "F2.8 STBY";
-                
-                let innerHtml = `
-                    <div style="color:#0c1202; font-weight:bold; font-size:0.62rem; margin-bottom:8px; border-bottom:2px solid #0c1202; width:fit-content;">AZUNYAA OS v1.0</div>
+            if (gbaCurrentState === 'BIOS_INTRO') {
+                sCanvas.style.display = 'none';
+                lcd.style.display = 'block';
+                lcd.innerHTML = `
+                    <div style="text-align:center; font-weight:bold; font-size:0.85rem; margin-top:22px; color:#1e2716; letter-spacing:2px;">Nintendo</div>
+                    <div style="text-align:center; font-size:0.38rem; color:#3a4d2a; margin-top:20px;">TEKAN TOMBOL [A] UNTUK START</div>
                 `;
-                mainTwoMenus.forEach((item, index) => {
-                    innerHtml += `<div class="nokia-menu-item ${index === camCurrentMenuPos ? 'menu-item-active' : ''}">${item.name}</div>`;
-                });
-                menuContainer.innerHTML = innerHtml;
-            } 
-            else if (camCurrentState === 'LIST_PROJEK') {
-                let innerHtml = `<div style="border-bottom:1px solid #0c1202; font-weight:bold; margin-bottom:4px; font-size:0.5rem;">INDEX SELECT:</div>`;
-                camProjectListData.forEach((item, index) => {
-                    innerHtml += `<div class="nokia-menu-item ${index === camCurrentSubProjectPos ? 'menu-item-active' : ''}">${item.name}</div>`;
-                });
-                menuContainer.innerHTML = innerHtml;
             }
-            else if (camCurrentState === 'PREVIEW_DETAIL') {
-                modeStatus.innerText = "PREVIEW";
-                isoStatus.innerText = "DATA OK";
-                const currentProj = camProjectListData[camCurrentSubProjectPos];
-                
-                menuContainer.innerHTML = `
-                    <div style="border:1px solid #0c1202; padding:4px; background:rgba(0,0,0,0.05);">
-                        <div style="font-weight:bold; font-size:0.52rem; text-decoration:underline; margin-bottom:2px;">TECH SPEC:</div>
-                        <div style="font-size:0.48rem; line-height:1.2; color:#0c1202;">${currentProj.tech}</div>
-                        <div style="margin-top:4px; background:#0c1202; color:#b1b98c; padding:0 3px; width:fit-content; font-size:0.45rem;">[SET]: TELEPORT</div>
+            else if (gbaCurrentState === 'SELEKSI_MENU') {
+                let html = `<div style="border-bottom:1px solid #1e2716; font-size:0.46rem; font-weight:bold; padding-bottom:2px; margin-bottom:4px;">MAIN OS SELECT:</div>`;
+                gbaConsoleGamesData.forEach((game, index) => {
+                    const isSelected = index === gbaSelectedGameIdx;
+                    html += `
+                        <div class="${isSelected ? 'menu-item-active' : ''}" style="font-size:0.42rem; padding:1px 2px; display:flex; align-items:center;">
+                            <span style="width:10px; display:inline-block;">${isSelected ? '▶' : ' '}</span>
+                            <span>CART: ${game.title}</span>
+                        </div>
+                    `;
+                });
+                html += `<div style="margin-top:6px; font-size:0.4rem; color:#3a4d2a; text-align:center; border-top:1px dashed #1e2716; padding-top:3px;">TEKAN [START]: PLAY SNAKE GAME 🐍</div>`;
+                lcd.innerHTML = html;
+            }
+            else if (gbaCurrentState === 'GAME_PLAYING') {
+                const game = gbaConsoleGamesData[gbaSelectedGameIdx];
+                lcd.innerHTML = `
+                    <div class="gba-game-viewport">
+                        <div class="gba-project-img-frame">
+                            <img src="${game.images[gbaCurrentImageIdx]}" onerror="this.src='https://via.placeholder.com/250x65?text=No+Image'">
+                            <div style="position:absolute; top:2px; right:3px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.35rem; padding:0 2px;">IMG:${gbaCurrentImageIdx + 1}/${game.images.length}</div>
+                        </div>
+                        <div class="gba-project-text-box" id="gbaTextScrollBox">
+                            <div style="font-weight:bold; font-size:0.46rem; border-bottom:1px dashed #1e2716; color:#0c1202; margin-bottom:2px;">${game.title}</div>
+                            <div id="textInnerScroll" style="transform: translateY(-${gbaTextScrollTop}px); transition: transform 0.1s ease;">${game.desc}</div>
+                        </div>
                     </div>
                 `;
             }
-            else if (camCurrentState === 'KAMERA_LIVE') {
-                startCameraHardware();
-                lcdFrame.style.background = "transparent"; 
-                modeStatus.innerText = "● REC";
-                isoStatus.innerText = "VGA 16BIT";
-                
-                menuContainer.innerHTML = `
-                    <div style="border:1px solid #0c1202; height:50px; margin-top:8px; display:flex; justify-content:center; align-items:center;">
-                        <span style="font-size:0.7rem; color:#0c1202; opacity:0.6;">[ + ]</span>
-                    </div>
+            else if (gbaCurrentState === 'SNAKE_GAMEOVER') {
+                lcd.innerHTML = `
+                    <div style="text-align:center; font-weight:bold; font-size:0.75rem; margin-top:20px; color:#b33939;">GAME OVER</div>
+                    <div style="text-align:center; font-size:0.5rem; margin-top:5px; font-weight:bold;">SCORE: ${snakeScore}</div>
+                    <div style="text-align:center; font-size:0.38rem; color:#1e2716; margin-top:10px;">TEKAN [A]: RESTART GAME<br>TEKAN [B]: KEMBALI MENU</div>
                 `;
             }
         }
 
-        function clickCamNav(direction) {
-            playCamBeepSound(1800, 0.04, 0.06);
-            
-            if (camCurrentState === 'MENU_UTAMA') {
-                camCurrentMenuPos += direction;
-                if (camCurrentMenuPos >= mainTwoMenus.length) camCurrentMenuPos = 0;
-                if (camCurrentMenuPos < 0) camCurrentMenuPos = mainTwoMenus.length - 1;
-                renderCamLcdDisplay();
-            } 
-            else if (camCurrentState === 'LIST_PROJEK') {
-                camCurrentSubProjectPos += direction;
-                if (camCurrentSubProjectPos >= camProjectListData.length) camCurrentSubProjectPos = 0;
-                if (camCurrentSubProjectPos < 0) camCurrentSubProjectPos = camProjectListData.length - 1;
-                renderCamLcdDisplay();
+        // --- MANAJER INTERAKSI KLIK TOMBOL CONSOLE GBA ---
+        function controlGbaHardware(buttonAction) {
+            playGbaSoundTone(1600, 0.03, 0.04, 'square');
+
+            if (buttonAction === 'B') {
+                gbaTextScrollTop = 0; gbaCurrentImageIdx = 0;
+                if (gbaCurrentState === 'GAME_PLAYING' || gbaCurrentState === 'SNAKE_MINIGAME' || gbaCurrentState === 'SNAKE_GAMEOVER') {
+                    gbaCurrentState = 'SELEKSI_MENU';
+                } else if (gbaCurrentState === 'SELEKSI_MENU') {
+                    gbaCurrentState = 'BIOS_INTRO';
+                }
+                renderGbaLcdDisplay();
+                return;
+            }
+
+            if (gbaCurrentState === 'BIOS_INTRO') {
+                if (buttonAction === 'A') {
+                    playNintyIntroChime();
+                    gbaCurrentState = 'SELEKSI_MENU';
+                    renderGbaLcdDisplay();
+                }
+            }
+            else if (gbaCurrentState === 'SELEKSI_MENU') {
+                if (buttonAction === 'UP') {
+                    gbaSelectedGameIdx = (gbaSelectedGameIdx - 1 + gbaConsoleGamesData.length) % gbaConsoleGamesData.length;
+                    renderGbaLcdDisplay();
+                } else if (buttonAction === 'DOWN') {
+                    gbaSelectedGameIdx = (gbaSelectedGameIdx + 1) % gbaConsoleGamesData.length;
+                    renderGbaLcdDisplay();
+                } else if (buttonAction === 'A') {
+                    playGbaSoundTone(700, 0.05, 0.04, 'square');
+                    gbaCurrentState = 'GAME_PLAYING';
+                    renderGbaLcdDisplay();
+                } else if (buttonAction === 'START') {
+                    // Pindah Langsung Ke Mode Snake Game Beneran
+                    document.getElementById('gbaLcdFrame').style.display = 'none';
+                    document.getElementById('gbaSnakeCanvas').style.display = 'block';
+                    gbaCurrentState = 'SNAKE_MINIGAME';
+                    startGbaSnakeEngine();
+                }
+            }
+            else if (gbaCurrentState === 'GAME_PLAYING') {
+                const activeCart = gbaConsoleGamesData[gbaSelectedGameIdx];
+                if (buttonAction === 'LEFT') {
+                    gbaCurrentImageIdx = (gbaCurrentImageIdx - 1 + activeCart.images.length) % activeCart.images.length;
+                    renderGbaLcdDisplay();
+                } else if (buttonAction === 'RIGHT') {
+                    gbaCurrentImageIdx = (gbaCurrentImageIdx + 1) % activeCart.images.length;
+                    renderGbaLcdDisplay();
+                } else if (buttonAction === 'UP') {
+                    if (gbaTextScrollTop > 0) gbaTextScrollTop -= 8;
+                    renderGbaLcdDisplay();
+                } else if (buttonAction === 'DOWN') {
+                    const innerHeight = document.getElementById('textInnerScroll')?.offsetHeight || 40;
+                    if (gbaTextScrollTop < innerHeight - 25) gbaTextScrollTop += 8;
+                    renderGbaLcdDisplay();
+                } else if (buttonAction === 'START' || buttonAction === 'A') {
+                    playGbaSoundTone(1100, 0.12, 0.05, 'triangle');
+                    const targetCard = document.getElementById('card-' + activeCart.id);
+                    if (targetCard) targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            else if (gbaCurrentState === 'SNAKE_MINIGAME') {
+                // Navigasi Mengontrol Arah Jalannya Ular Monokrom
+                if (buttonAction === 'UP' && sDy === 0)    { sDx = 0; sDy = -6; }
+                if (buttonAction === 'DOWN' && sDy === 0)  { sDx = 0; sDy = 6; }
+                if (buttonAction === 'LEFT' && sDx === 0)  { sDx = -6; sDy = 0; }
+                if (buttonAction === 'RIGHT' && sDx === 0) { sDx = 6; sDy = 0; }
+            }
+            else if (gbaCurrentState === 'SNAKE_GAMEOVER') {
+                if (buttonAction === 'A') {
+                    document.getElementById('gbaLcdFrame').style.display = 'none';
+                    document.getElementById('gbaSnakeCanvas').style.display = 'block';
+                    gbaCurrentState = 'SNAKE_MINIGAME';
+                    startGbaSnakeEngine();
+                }
             }
         }
 
-        function clickCamSelect() {
-            if (camCurrentState === 'MENU_UTAMA') {
-                playCamBeepSound(2200, 0.05, 0.06);
-                if (mainTwoMenus[camCurrentMenuPos].code === 'PROJEK') {
-                    camCurrentState = 'LIST_PROJEK';
-                } else {
-                    camCurrentState = 'KAMERA_LIVE';
-                }
-                renderCamLcdDisplay();
-            } 
-            else if (camCurrentState === 'LIST_PROJEK') {
-                playCamBeepSound(2300, 0.05, 0.06);
-                camCurrentState = 'PREVIEW_DETAIL';
-                renderCamLcdDisplay();
-            }
-            else if (camCurrentState === 'PREVIEW_DETAIL') {
-                playCamBeepSound(2600, 0.07, 0.08);
-                const targetCard = document.getElementById('card-' + camProjectListData[camCurrentSubProjectPos].id);
-                if (targetCard) {
-                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
+        // --- ENGINE GENERATOR GAME ULAR 2D ASLI DI DALAM CANVAS GBA ---
+        function startGbaSnakeEngine() {
+            snakeCanvas = document.getElementById('gbaSnakeCanvas');
+            snakeCtx = snakeCanvas.getContext('2d');
+
+            snakeBody = [{x: 60, y: 60}, {x: 54, y: 60}, {x: 48, y: 60}];
+            snakeScore = 0;
+            sDx = 6; sDy = 0;
+
+            generateGbaFood();
+            if (snakeInterval) clearInterval(snakeInterval);
+            snakeInterval = setInterval(updateGbaSnakeLoop, 110); // Game Speed
         }
 
-        function resetToCamHome() {
-            playCamBeepSound(1300, 0.05, 0.06);
-            if (camCurrentState === 'PREVIEW_DETAIL') {
-                camCurrentState = 'LIST_PROJEK';
+        function generateGbaFood() {
+            snakeFood = {
+                x: Math.floor(Math.random() * (snakeCanvas.width / 6)) * 6,
+                y: Math.floor(Math.random() * (snakeCanvas.height / 6)) * 6
+            };
+        }
+
+        function updateGbaSnakeLoop() {
+            if (checkGbaSnakeCollision()) {
+                playGbaSoundTone(300, 0.35, 0.06, 'sawtooth'); // Bunyi tabrakan game over
+                clearInterval(snakeInterval);
+                gbaCurrentState = 'SNAKE_GAMEOVER';
+                renderGbaLcdDisplay();
+                return;
+            }
+
+            const newHead = {x: snakeBody[0].x + sDx, y: snakeBody[0].y + sDy};
+            snakeBody.unshift(newHead);
+
+            // Kondisi Ular Berhasil Makan Point
+            if (snakeBody[0].x === snakeFood.x && snakeBody[0].y === snakeFood.y) {
+                snakeScore += 10;
+                playGbaSoundTone(1800, 0.04, 0.05, 'square'); // Bunyi chiptune girang makan koin
+                generateGbaFood();
             } else {
-                camCurrentState = 'MENU_UTAMA';
+                snakeBody.pop();
             }
-            renderCamLcdDisplay();
+
+            // Mulai Menggambar Pixel Monokrom Hijau Lumut
+            snakeCtx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+            snakeCtx.fillStyle = '#1e2716';
+
+            // Menggambar Poin Makanan Kotak
+            snakeCtx.fillRect(snakeFood.x, snakeFood.y, 5, 5);
+
+            // Menggambar Rantai Tubuh Ular
+            snakeBody.forEach(part => {
+                snakeCtx.fillRect(part.x, part.y, 5, 5);
+            });
+
+            // Tulisan Skor Mini
+            snakeCtx.font = 'bold 8px monospace';
+            snakeCtx.fillText("SCORE:" + snakeScore, 190, 10);
         }
 
-        // --- SISTEM MEKANIK JEPRET FOTO + AUTOMATIC CAPTURE DAN MERGE OVERLAY HUD ---
-        function triggerCapturePhoto() {
-            initCamAudioContext();
-            
-            const flashOverlay = document.getElementById('flashGlass');
-            flashOverlay.classList.remove('fired');
-            void flashOverlay.offsetWidth; 
-            flashOverlay.classList.add('fired');
-
-            // Bunyi Mekanik Shutter Besi Kamera Poket
-            if (camAudioCtx) {
-                triggerShutterClickSfx(800, 0.05, 0.35, 'triangle');
-                setTimeout(() => {
-                    triggerShutterClickSfx(250, 0.06, 0.25, 'sawtooth');
-                }, 40);
+        function checkGbaSnakeCollision() {
+            // Cek nabrak badan sendiri
+            for (let i = 4; i < snakeBody.length; i++) {
+                if (snakeBody[i].x === snakeBody[0].x && snakeBody[i].y === snakeBody[0].y) return true;
             }
-
-            // Jika dalam mode kamera live, lakukan proses penangkapan gambar & merge bingkai HUD
-            if (camCurrentState === 'KAMERA_LIVE') {
-                captureAndSaveDigicamPhoto();
-            }
-        }
-
-        function triggerShutterClickSfx(frequency, duration, volume, waveType) {
-            if (!camAudioCtx) return;
-            const osc = camAudioCtx.createOscillator();
-            const gain = camAudioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(camAudioCtx.destination);
-
-            osc.type = waveType;
-            osc.frequency.setValueAtTime(frequency, camAudioCtx.currentTime);
-            osc.frequency.linearRampToValueAtTime(20, camAudioCtx.currentTime + duration);
-
-            gain.gain.setValueAtTime(volume, camAudioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, camAudioCtx.currentTime + duration);
-
-            osc.start();
-            osc.stop(camAudioCtx.currentTime + duration);
-        }
-
-        function captureAndSaveDigicamPhoto() {
-            const video = document.getElementById('digicamViewfinder');
-            
-            // Buat canvas bayangan penampung pemrosesan ukuran pas dengan frame layar monitor (290x180)
-            const captureCanvas = document.createElement('canvas');
-            captureCanvas.width = 290;
-            captureCanvas.height = 180;
-            const canvasCtx = captureCanvas.getContext('2d');
-
-            // 1. Gambar Video Feed (Dengan Mirroring Efek Cermin agar Alami)
-            canvasCtx.translate(captureCanvas.width, 0);
-            canvasCtx.scale(-1, 1);
-            canvasCtx.drawImage(video, 0, 0, captureCanvas.width, captureCanvas.height);
-            canvasCtx.setTransform(1, 0, 0, 1, 0, 0); // Kembalikan koordinat normal canvas
-
-            // 2. Tembak Filter Warna Jadul 90an Lo-Fi Ke Atas Gambar Canvas
-            let imgData = canvasCtx.getImageData(0, 0, captureCanvas.width, captureCanvas.height);
-            let data = imgData.data;
-            for (let i = 0; i < data.length; i += 4) {
-                let r = data[i], g = data[i+1], b = data[i+2];
-                // Formula Efek Kombinasi Sepia + Tint Hijau LCD Kusam Lama
-                let sepiaR = (r * 0.393) + (g * 0.769) + (b * 0.189);
-                let sepiaG = (r * 0.349) + (g * 0.686) + (b * 0.168);
-                let sepiaB = (r * 0.272) + (g * 0.534) + (b * 0.131);
-                
-                // Beri kontras kasar tambahan agar pecah ala 16-bit camcorder
-                data[i]     = Math.min(255, sepiaR * 0.9);
-                data[i+1]   = Math.min(255, sepiaG * 1.1); // Kuatkan unsur warna hijau
-                data[i+2]   = Math.min(255, sepiaB * 0.7);
-            }
-            canvasCtx.putImageData(imgData, 0, 0);
-
-            // 3. Lukis Lapisan Garis Scanline Garis CRT Tabung Kuno
-            canvasCtx.fillStyle = "rgba(0, 0, 0, 0.08)";
-            for (let y = 0; y < captureCanvas.height; y += 4) {
-                canvasCtx.fillRect(0, y, captureCanvas.width, 2);
-            }
-
-            // 4. Gambar Cetakan Tulisan Teks Overlay Bingkai HUD OSD Kamera
-            canvasCtx.fillStyle = "#0c1202"; // Warna font hitam pekat komputer purba
-            canvasCtx.font = "bold 10px monospace";
-            
-            // HUD Baris Atas
-            canvasCtx.fillText("● REC", 10, 18);
-            canvasCtx.fillText("💾 [FLOPPY] 🔋", 185, 18);
-            
-            // Crosshair Tengah Bidikan
-            canvasCtx.font = "14px monospace";
-            canvasCtx.fillText("[ + ]", 125, 95);
-            
-            // HUD Baris Bawah
-            canvasCtx.font = "bold 10px monospace";
-            const currentYearStr = document.getElementById('camLiveDate').innerText;
-            canvasCtx.fillText(currentYearStr, 10, 168);
-            canvasCtx.fillText("VGA 16BIT", 215, 168);
-
-            // 5. Trigger Sistem Unduh Gambar PNG Otomatis
-            const link = document.createElement('a');
-            link.download = 'digicam-1998.png';
-            link.href = captureCanvas.toDataURL('image/png');
-            link.click();
+            // Cek tabrak pembatas dinding frame LCD
+            const wallL = snakeBody[0].x < 0;
+            const wallR = snakeBody[0].x >= snakeCanvas.width;
+            const wallT = snakeBody[0].y < 0;
+            const wallB = snakeBody[0].y >= snakeCanvas.height;
+            return wallL || wallR || wallT || wallB;
         }
     </script>
 </body>
