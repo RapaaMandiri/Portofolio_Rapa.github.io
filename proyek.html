@@ -90,6 +90,7 @@
             background: #fff; padding: 15px 15px 45px 15px;
             box-shadow: 5px 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee;
             position: relative; transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
         .project-card:hover { transform: scale(1.02); }
 
@@ -124,126 +125,165 @@
             background: var(--washi-tape-2); z-index: 10;
         }
 
-        .project-info { padding-top: 15px; }
+        .project-info { padding-top: 15px; flex-grow: 1; }
         .project-title { font-family: 'Special Elite'; margin: 0; font-size: 1.3rem; }
-        .project-desc { font-size: 0.9rem; color: #444; margin-top: 10px; }
-        .sticker-emoji { position: absolute; font-size: 1.5rem; bottom: 10px; right: 10px; }
+        .project-desc { font-size: 0.9rem; color: #444; margin-top: 10px; line-height: 1.4; }
+        .sticker-emoji { position: absolute; font-size: 1.5rem; bottom: 10px; right: 10px; z-index: 2; }
 
+        .project-links-btn-group {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .proj-link-btn {
+            display: block;
+            text-align: center;
+            background: #fff;
+            color: #222;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            border: 1px solid #aaa;
+            box-shadow: 2px 2px 0px #222;
+            transition: 0.2s;
+            font-family: 'Courier Prime', monospace;
+            cursor: pointer;
+        }
+        .proj-link-btn:hover {
+            background: #222;
+            color: #fff;
+            box-shadow: 0px 0px 0px #222;
+            transform: translate(2px, 2px);
+        }
+        .proj-link-btn.btn-view-full {
+            background: #faf4e1;
+            border: 1px dashed #7f8c8d;
+        }
+
+        /* --- --- INTERFACE LIGHTBOX MODAL --- --- */
         #lightbox {
             display: none; position: fixed; z-index: 10000;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
+            background: rgba(0,0,0,0.95); flex-direction: column; justify-content: center; align-items: center;
         }
-        #lightbox img { max-width: 90%; max-height: 80%; border: 5px solid white; }
         #lightbox .close-btn {
             position: absolute; top: 20px; right: 30px;
-            color: white; font-size: 40px; cursor: pointer; font-family: Arial;
+            color: white; font-size: 40px; cursor: pointer; font-family: Arial; z-index: 100;
         }
+        
+        .lightbox-window-container {
+            width: 80%;
+            max-width: 750px;
+            background: #fff;
+            padding: 15px;
+            border: 4px solid #222;
+            box-shadow: 10px 10px 0px rgba(255,255,255,0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .lightbox-slider-frame {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            border: 2px solid #222;
+            position: relative;
+            background: #000;
+        }
+        .lightbox-slider-wrapper {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+        .lightbox-slider-wrapper img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .lightbox-nav-btn {
+            position: absolute; top: 45%; transform: translateY(-50%);
+            background: #222; color: #fff; border: 2px solid #fff;
+            padding: 12px 16px; font-weight: bold; font-size: 1.2rem;
+            cursor: pointer; z-index: 10; font-family: 'Courier Prime';
+        }
+        .lightbox-nav-btn:hover { background: #fff; color: #222; border-color: #222; }
+        .lb-prev { left: 10px; }
+        .lb-next { right: 10px; }
 
+        .lightbox-caption-box {
+            width: 100%;
+            margin-top: 15px;
+            font-family: 'Courier Prime', monospace;
+            color: #222;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .lightbox-action-row {
+            margin-top: 15px;
+            width: 100%;
+            display: flex;
+            gap: 15px;
+        }
+        .lightbox-action-row .proj-link-btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 0.85rem;
+        }
 
         /* --- --- AREA EMULATOR GBA HORIZONTAL CODES --- --- */
-        .gba-section-container {
-            margin-top: 60px;
-            text-align: center;
-        }
-
+        .gba-section-container { margin-top: 60px; text-align: center; }
         .gba-body {
-            width: 520px;
-            height: 260px;
-            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%); 
-            border: 5px solid #d35400;
-            border-radius: 24px 24px 45px 45px;
-            display: inline-block;
+            width: 520px; height: 260px; background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%); 
+            border: 5px solid #d35400; border-radius: 24px 24px 45px 45px; display: inline-block;
             box-shadow: 0 22px 40px rgba(0,0,0,0.3), inset 0 3px 5px rgba(255,255,255,0.6);
-            position: relative;
-            box-sizing: border-box;
-            padding: 15px;
-            transform: rotate(-0.5deg);
+            position: relative; box-sizing: border-box; padding: 15px; transform: rotate(-0.5deg);
         }
-
         .gba-screen-bezel {
-            width: 270px;
-            height: 190px;
-            background: #2c3e50;
-            border: 3px solid #1a252f;
-            border-radius: 6px;
-            position: absolute;
-            top: 30px;
-            left: 125px;
-            box-sizing: border-box;
-            padding: 15px 12px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            width: 270px; height: 190px; background: #2c3e50; border: 3px solid #1a252f;
+            border-radius: 6px; position: absolute; top: 30px; left: 125px;
+            box-sizing: border-box; padding: 15px 12px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
-
-        .gba-screen-logo {
-            color: #95a5a6; font-family: sans-serif; font-size: 0.45rem; font-style: italic; font-weight: bold; letter-spacing: 1px; text-align: center; margin-top: 4px;
-        }
-
-        .gba-lcd-screen {
-            width: 100%;
-            height: 135px;
-            background: #8fa382; 
-            border: 3px solid #111;
-            box-sizing: border-box;
-            position: relative;
-            font-family: 'Courier Prime', monospace;
-            color: #1e2716;
-            padding: 5px;
-            overflow: hidden;
-        }
-
-        .gba-lcd-screen::before {
-            content: " "; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.05) 50%, transparent 50%), linear-gradient(90deg, rgba(0,0,0,0.05) 50%, transparent 50%);
-            background-size: 2px 2px; pointer-events: none; z-index: 10;
-        }
-
-        .gba-game-viewport {
-            width: 100%; height: 100%; display: flex; flex-direction: column; box-sizing: border-box;
-        }
-
-        .gba-project-img-frame {
-            width: 100%; height: 65px; border: 1px solid #1e2716; overflow: hidden; background: #7d8f70; position: relative;
-        }
+        .gba-screen-logo { color: #95a5a6; font-family: sans-serif; font-size: 0.45rem; font-style: italic; font-weight: bold; letter-spacing: 1px; text-align: center; margin-top: 4px; }
+        .gba-lcd-screen { width: 100%; height: 135px; background: #8fa382; border: 3px solid #111; box-sizing: border-box; position: relative; font-family: 'Courier Prime', monospace; color: #1e2716; padding: 5px; overflow: hidden; }
+        .gba-lcd-screen::before { content: " "; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.05) 50%, transparent 50%), linear-gradient(90deg, rgba(0,0,0,0.05) 50%, transparent 50%); background-size: 2px 2px; pointer-events: none; z-index: 10; }
+        .gba-game-viewport { width: 100%; height: 100%; display: flex; flex-direction: column; box-sizing: border-box; }
+        .gba-project-img-frame { width: 100%; height: 65px; border: 1px solid #1e2716; overflow: hidden; background: #7d8f70; position: relative; }
         .gba-project-img-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.4) contrast(1.3) brightness(0.95); }
-
         .gba-project-text-box { font-size: 0.45rem; line-height: 1.2; margin-top: 3px; height: 52px; overflow-y: hidden; position: relative; }
-
-        /* Canvas Game Ular Retro */
-        #gbaSnakeCanvas {
-            background: transparent; display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0;
-        }
-
-        /* --- Sisi Kontrol Tombol Sebelah Kiri (D-Pad Silang) --- */
+        #gbaSnakeCanvas { background: transparent; display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
         .gba-left-controls { position: absolute; top: 75px; left: 20px; width: 85px; height: 85px; }
         .gba-dpad-cross { width: 76px; height: 76px; position: relative; }
         .dpad-axis { background: #222; position: absolute; border-radius: 3px; box-shadow: 0 3px 0 #000; }
         .dpad-axis-v { width: 24px; height: 72px; left: 24px; top: 0; }
         .dpad-axis-h { width: 72px; height: 24px; left: 0; top: 24px; }
-
         .dpad-clicker { position: absolute; z-index: 15; cursor: pointer; }
-        .dpad-clicker:active { transform: scale(0.95); }
         .clicker-up { top: 0; left: 24px; width: 24px; height: 24px; }
         .clicker-down { bottom: 0; left: 24px; width: 24px; height: 24px; }
         .clicker-left { top: 24px; left: 0; width: 24px; height: 24px; }
         .clicker-right { top: 24px; right: 0; width: 24px; height: 24px; }
         .dpad-label-arrow { position: absolute; z-index: 5; color: #555; font-size: 0.5rem; font-weight: bold; pointer-events: none; }
-
-        /* --- Sisi Kontrol Tombol Sebelah Kanan (A / B) --- */
         .gba-right-controls { position: absolute; top: 85px; right: 15px; width: 95px; height: 80px; transform: rotate(-12deg); }
-        .gba-circle-btn {
-            width: 36px; height: 36px; background: #c0392b; border-radius: 50%; border: 2px solid #222;
-            display: inline-flex; justify-content: center; align-items: center; color: #fff;
-            font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 0 #7f2d22, 0 4px 5px rgba(0,0,0,0.3); user-select: none;
-        }
+        .gba-circle-btn { width: 36px; height: 36px; background: #c0392b; border-radius: 50%; border: 2px solid #222; display: inline-flex; justify-content: center; align-items: center; color: #fff; font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 0 #7f2d22, 0 4px 5px rgba(0,0,0,0.3); user-select: none; }
         .gba-circle-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #7f2d22; }
-
-        /* --- Tombol Karet Select & Start Di Bawah --- */
         .gba-bottom-controls { position: absolute; bottom: 12px; left: 190px; display: flex; gap: 25px; }
         .gba-pill-btn { width: 38px; height: 8px; background: #7f8c8d; border: 1px solid #222; border-radius: 4px; cursor: pointer; box-shadow: 0 2px 0 #555; }
         .gba-pill-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #555; }
-        .pill-label { font-size: 0.38rem; font-weight: bold; color: #2c3e50; text-align: center; margin-top: 1px; font-family: sans-serif;}
+        .pili-label { font-size: 0.38rem; font-weight: bold; color: #2c3e50; text-align: center; margin-top: 1px; font-family: sans-serif;}
+
+        /* --- --- SEKSI RETRO CONTACT ME KERTAS SOBEK --- --- */
+        .contact-me-section {
+            max-width: 450px; margin: 50px auto 10px auto; background: #fff; padding: 25px;
+            border: 1px solid #ccc; box-shadow: 5px 5px 12px rgba(0,0,0,0.06); position: relative; transform: rotate(0.8deg);
+        }
+        .contact-me-section::before { content: ""; position: absolute; top: -8px; left: 0; width: 100%; height: 8px; background: linear-gradient(135deg, transparent 4px, #fff 4px), linear-gradient(-135deg, transparent 4px, #fff 4px); background-size: 8px 16px; }
+        .contact-title { font-family: 'Special Elite', cursive; font-size: 1.4rem; margin: 0 0 15px 0; border-bottom: 2px dashed #333; padding-bottom: 5px; display: inline-block; }
+        .contact-info-text { font-size: 0.9rem; line-height: 1.6; margin: 8px 0; }
+        .contact-link { color: #222; font-weight: bold; text-decoration: underline; transition: 0.2s; }
+        .contact-link:hover { color: #d35400; }
 
         @media (max-width: 768px) {
             .gba-body { width: 100%; max-width: 340px; height: 360px; padding: 10px; }
@@ -251,6 +291,8 @@
             .gba-left-controls { bottom: 20px; top: auto; left: 20px; }
             .gba-right-controls { bottom: 25px; top: auto; right: 10px; }
             .gba-bottom-controls { bottom: 120px; left: calc(50% - 50px); }
+            .lightbox-window-container { width: 95%; }
+            .lightbox-slider-frame { height: 220px; }
         }
 
         footer { margin-top: 60px; padding: 20px; border-top: 1px dashed #ccc; display: flex; justify-content: space-between; font-family: 'Special Elite'; }
@@ -265,9 +307,27 @@
         </div>
     </div>
 
-    <div id="lightbox" onclick="closeLightbox()">
-        <span class="close-btn">&times;</span>
-        <img id="lightbox-img" src="" alt="Full Project Image">
+    <div id="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-window-container">
+            <button class="lightbox-nav-btn lb-prev" onclick="moveLightboxSlide(-1)">❮</button>
+            <button class="lightbox-nav-btn lb-next" onclick="moveLightboxSlide(1)">❯</button>
+            
+            <div class="lightbox-slider-frame">
+                <div class="lightbox-slider-wrapper" id="lbSliderWrapper">
+                    </div>
+            </div>
+            
+            <div class="lightbox-caption-box">
+                <h3 id="lbCaptionTitle" style="margin: 0 0 5px 0; font-family: 'Special Elite'; font-size: 1.2rem;">Projek</h3>
+                <div id="lbCaptionText">Deskripsi proyek lengkap akan tercantum di sini.</div>
+            </div>
+            
+            <div class="lightbox-action-row">
+                <a href="#" id="lbBtnGit" target="_blank" class="proj-link-btn">&lt;/&gt; Lihat Kode</a>
+                <a href="#" id="lbBtnView" target="_blank" class="proj-link-btn">👁️ Hasil Kode</a>
+            </div>
+        </div>
     </div>
 
     <div class="label-maker-marquee">
@@ -286,111 +346,138 @@
         <div class="project-grid">
             
             <div class="project-card" id="card-slider1">
-                <div class="project-tape"></div>
-                <div class="slider-container" id="slider1">
-                    <button class="prev" onclick="moveSlide('slider1', -1)">❮</button>
-                    <div class="slider-wrapper">
-                        <img src="assets/imageproject/ptx2.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/ptx1.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/ptx3.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/ptx4.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/ptx5.png" onclick="openLightbox(this.src)">
+                <div>
+                    <div class="project-tape"></div>
+                    <div class="slider-container" id="slider1">
+                        <button class="prev" onclick="moveSlide('slider1', -1)">❮</button>
+                        <div class="slider-wrapper">
+                            <img src="assets/imageproject/ptx2.png" onclick="triggerOpenLightbox(0)">
+                            <img src="assets/imageproject/ptx1.png" onclick="triggerOpenLightbox(0)">
+                            <img src="assets/imageproject/ptx3.png" onclick="triggerOpenLightbox(0)">
+                            <img src="assets/imageproject/ptx4.png" onclick="triggerOpenLightbox(0)">
+                            <img src="assets/imageproject/ptx5.png" onclick="triggerOpenLightbox(0)">
+                        </div>
+                        <button class="next" onclick="moveSlide('slider1', 1)">❯</button>
                     </div>
-                    <button class="next" onclick="moveSlide('slider1', 1)">❯</button>
+                    <div class="project-info">
+                        <h3 class="project-title">Webcam Azunyaa Website</h3>
+                        <p class="project-desc">Hasil projek sendiri, Webcam Azunyaa ini adalah bisa foto melalui website, ini ala photobox.</p>
+                    </div>
                 </div>
-                <div class="project-info">
-                    <h3 class="project-title">Webcam Azunyaa Website</h3>
-                    <p class="project-desc">Hasil projek sendiri, Webcam Azunyaa ini adalah bisa foto melalui website, ini ala photobox.</p>
+                <div class="project-links-btn-group">
+                    <button type="button" class="proj-link-btn btn-view-full" onclick="triggerOpenLightbox(0)">🖼️ Full View & Slide</button>
+                    <a href="https://rapaamandiri.github.io/WebcamAzuria.github.io/" target="_blank" class="proj-link-btn">👁️ Hasil Kode</a>
+                    <a href="https://github.com/RapaaMandiri/WebcamAzuria.github.io" target="_blank" class="proj-link-btn">&lt;/&gt; Lihat Kode</a>
                 </div>
                 <span class="sticker-emoji">📸</span>
             </div>
 
             <div class="project-card" id="card-slider2">
-                <div class="project-tape" style="background: var(--washi-tape-1);"></div>
-                <div class="slider-container" id="slider2">
-                    <button class="prev" onclick="moveSlide('slider2', -1)">❮</button>
-                    <div class="slider-wrapper">
-                        <img src="assets/imageproject/ctbx1.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/ctbx2.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/ctbx3.png" onclick="openLightbox(this.src)">
+                <div>
+                    <div class="project-tape" style="background: var(--washi-tape-1);"></div>
+                    <div class="slider-container" id="slider2">
+                        <button class="prev" onclick="moveSlide('slider2', -1)">❮</button>
+                        <div class="slider-wrapper">
+                            <img src="assets/imageproject/ctbx1.png" onclick="triggerOpenLightbox(1)">
+                            <img src="assets/imageproject/ctbx2.png" onclick="triggerOpenLightbox(1)">
+                            <img src="assets/imageproject/ctbx3.png" onclick="triggerOpenLightbox(1)">
+                        </div>
+                        <button class="next" onclick="moveSlide('slider2', 1)">❯</button>
                     </div>
-                    <button class="next" onclick="moveSlide('slider2', 1)">❯</button>
+                    <div class="project-info">
+                        <h3 class="project-title">ChatBox AI Python</h3>
+                        <p class="project-desc">Namanya Azunya Ai, menggunakan kode Python dan terhubung dengan API dari Google AI Studio.</p>
+                    </div>
                 </div>
-                <div class="project-info">
-                    <h3 class="project-title">ChatBox AI Python</h3>
-                    <p class="project-desc">Namanya Azunya Ai, menggunakan kode Python dan terhubung dengan API dari Google AI Studio.</p>
+                <div class="project-links-btn-group">
+                    <button type="button" class="proj-link-btn btn-view-full" onclick="triggerOpenLightbox(1)">🖼️ Full View & Slide</button>
+                    <span class="proj-link-btn" style="background:#f4f4f4; color:#aaa; cursor:not-allowed; box-shadow:none; border-style:dashed;" title="Link demo tidak tersedia">👁️ No Live Demo</span>
+                    <a href="https://github.com/RapaaMandiri/ChatBoxAzunya" target="_blank" class="proj-link-btn">&lt;/&gt; Lihat Kode</a>
                 </div>
                 <span class="sticker-emoji">🤖</span>
             </div>
 
             <div class="project-card" id="card-slider3">
-                <div class="project-tape" style="background: var(--washi-tape-3);"></div>
-                <div class="slider-container" id="slider3">
-                    <button class="prev" onclick="moveSlide('slider3', -1)">❮</button>
-                    <div class="slider-wrapper">
-                        <img src="assets/imageproject/gly1.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/gly2.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/gly3.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/gly4.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/gly5.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/gly6.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/gly7.png" onclick="openLightbox(this.src)">
-                        <img src="assets/imageproject/gly8.png" onclick="openLightbox(this.src)">
+                <div>
+                    <div class="project-tape" style="background: var(--washi-tape-3);"></div>
+                    <div class="slider-container" id="slider3">
+                        <button class="prev" onclick="moveSlide('slider3', -1)">❮</button>
+                        <div class="slider-wrapper">
+                            <img src="assets/imageproject/gly1.png" onclick="triggerOpenLightbox(2)">
+                            <img src="assets/imageproject/gly2.png" onclick="triggerOpenLightbox(2)">
+                            <img src="assets/imageproject/gly3.png" onclick="triggerOpenLightbox(2)">
+                            <img src="assets/imageproject/gly4.png" onclick="triggerOpenLightbox(2)">
+                            <img src="assets/imageproject/gly5.png" onclick="triggerOpenLightbox(2)">
+                            <img src="assets/imageproject/gly6.png" onclick="triggerOpenLightbox(2)">
+                            <img src="assets/imageproject/gly7.png" onclick="triggerOpenLightbox(2)">
+                            <img src="assets/imageproject/gly8.png" onclick="triggerOpenLightbox(2)">
+                        </div>
+                        <button class="next" onclick="moveSlide('slider3', 1)">❯</button>
                     </div>
-                    <button class="next" onclick="moveSlide('slider3', 1)">❯</button>
+                    <div class="project-info">
+                        <h3 class="project-title">Gallery Photo Jakarta</h3>
+                        <p class="project-desc">Ini adalah projek besar, galleri foto untuk upload foto-foto pemandangan di DKI JAKARTA.</p>
+                    </div>
                 </div>
-                <div class="project-info">
-                    <h3 class="project-title">Gallery Photo Jakarta</h3>
-                    <p class="project-desc">Ini adalah projek besar, galleri foto untuk upload foto-foto pemandangan di DKI JAKARTA.</p>
+                <div class="project-links-btn-group">
+                    <button type="button" class="proj-link-btn btn-view-full" onclick="triggerOpenLightbox(2)">🖼️ Full View & Slide</button>
+                    <a href="https://raffamandala.pplg1.my.id/index.php?filter=me" target="_blank" class="proj-link-btn">👁️ Hasil Kode</a>
+                    <a href="https://github.com/RapaaMandiri/Galleri_Foto" target="_blank" class="proj-link-btn">&lt;/&gt; Lihat Kode</a>
                 </div>
                 <span class="sticker-emoji">🖼️</span>
             </div>
 
         </div>
 
-
         <div class="gba-section-container">
             <p style="font-family:'Special Elite'; font-size:1.1rem; margin-bottom:15px;">Retro GBA Gaming & Portfolio Center</p>
-            
             <div class="gba-body" id="gbaConsoleBody" onclick="initGbaAudioContext()">
-                
                 <div class="gba-screen-bezel">
-                    <div class="gba-lcd-screen" id="gbaLcdFrame">
-                        </div>
+                    <div class="gba-lcd-screen" id="gbaLcdFrame"></div>
                     <canvas id="gbaSnakeCanvas" width="246" height="125"></canvas>
                     <div class="gba-screen-logo">GAME BOY ADVANCE</div>
                 </div>
-
                 <div class="gba-left-controls">
                     <div class="gba-dpad-cross">
                         <div class="dpad-axis dpad-axis-v"></div>
                         <div class="dpad-axis dpad-axis-h"></div>
-                        
                         <div class="dpad-label-arrow" style="top:2px; left:9px;">▲</div>
                         <div class="dpad-label-arrow" style="bottom:2px; left:9px;">▼</div>
                         <div class="dpad-label-arrow" style="top:7px; left:2px;">◀</div>
                         <div class="dpad-label-arrow" style="top:7px; right:2px;">▶</div>
-
                         <div class="dpad-clicker clicker-up" onclick="controlGbaHardware('UP')"></div>
                         <div class="dpad-clicker clicker-down" onclick="controlGbaHardware('DOWN')"></div>
                         <div class="dpad-clicker clicker-left" onclick="controlGbaHardware('LEFT')"></div>
                         <div class="dpad-clicker clicker-right" onclick="controlGbaHardware('RIGHT')"></div>
                     </div>
                 </div>
-
                 <div class="gba-right-controls">
                     <div class="gba-circle-btn" style="margin-right:12px;" onclick="controlGbaHardware('B')">B</div>
                     <div class="gba-circle-btn" onclick="controlGbaHardware('A')">A</div>
                 </div>
-
                 <div class="gba-bottom-controls">
                     <div><div class="gba-pill-btn" onclick="controlGbaHardware('B')"></div><div class="pill-label">SELECT</div></div>
                     <div><div class="gba-pill-btn" onclick="controlGbaHardware('START')"></div><div class="pill-label">START</div></div>
                 </div>
-
             </div>
         </div>
 
+ <div class="contact-me-section">
+    <h3 class="contact-title">✉️ Contact Me</h3>
+    <p class="contact-info-text"><strong>Name:</strong> Rafa Mandala Putra Mioktobi</p>
+    <p class="contact-info-text"><strong>Status:</strong> PPLG Student / Software Engineer Enthusiast</p>
+    <p class="contact-info-text"><strong>Email:</strong> <a href="mailto:mandalarafa2@gmail.com" class="contact-link">mandalarafa2@gmail.com</a></p>
+    <p class="contact-info-text"><strong>Instagram:</strong> <a href="https://www.instagram.com/azuriamandrian/" target="_blank" class="contact-link">@azuriamandrian</a></p>
+    <p class="contact-info-text"><strong>GitHub:</strong> <a href="https://github.com/RapaaMandiri" target="_blank" class="contact-link">RapaaMandiri</a></p>
+    
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="CV_Rafa_Mandala.pdf" download="CV_Rafa_Mandala.pdf" class="proj-link-btn" style="background: #e67e22; color: #fff; border: 2px solid #d35400;">
+            📥 Download CV (PDF)
+        </a>
+    </div>
+    
+    <p class="contact-info-text" style="font-family:'Homemade Apple'; color:#d63031; margin-top:15px; text-align:right;">Let's work together!</p>
+</div>
 
         <footer>
             <div><strong>Rafa Mandala</strong><br>© <?php echo date("Y"); ?> PPLG Student</div>
@@ -403,29 +490,83 @@
             const loading = document.getElementById('loading-screen');
             loading.style.opacity = '0';
             setTimeout(() => { loading.style.display = 'none'; }, 500);
-
             renderGbaLcdDisplay();
         });
 
-        const slideIndex = {};
+        // --- CORE SYSTEM DATA PROJEK GLOBAL ---
+        const projectGlobalData = [
+            {
+                title: "Webcam Azunyaa Website",
+                desc: "Hasil projek sendiri, Webcam Azunyaa ini adalah bisa foto melalui website, ini ala photobox.",
+                gitUrl: "https://github.com/RapaaMandiri/WebcamAzuria.github.io",
+                viewUrl: "https://rapaamandiri.github.io/WebcamAzuria.github.io/",
+                images: ["assets/imageproject/ptx2.png", "assets/imageproject/ptx1.png", "assets/imageproject/ptx3.png", "assets/imageproject/ptx4.png", "assets/imageproject/ptx5.png"]
+            },
+            {
+                title: "ChatBox AI Python",
+                desc: "Namanya Azunya Ai, menggunakan kode Python dan terhubung dengan API dari Google AI Studio.",
+                gitUrl: "https://github.com/RapaaMandiri/ChatBoxAzunya",
+                viewUrl: "#", 
+                images: ["assets/imageproject/ctbx1.png", "assets/imageproject/ctbx2.png", "assets/imageproject/ctbx3.png"]
+            },
+            {
+                title: "Gallery Photo Jakarta",
+                desc: "Ini adalah projek besar, galleri foto untuk upload foto-foto pemandangan di DKI JAKARTA.",
+                gitUrl: "https://github.com/RapaaMandiri/Galleri_Foto",
+                viewUrl: "https://raffamandala.pplg1.my.id/index.php?filter=me",
+                images: ["assets/imageproject/gly1.png", "assets/imageproject/gly2.png", "assets/imageproject/gly3.png", "assets/imageproject/gly4.png", "assets/imageproject/gly5.png", "assets/imageproject/gly6.png", "assets/imageproject/gly7.png", "assets/imageproject/gly8.png"]
+            }
+        ];
 
+        // --- ENGINE SLIDER SCRAPBOOK UTAMA ---
+        const slideIndex = {};
         function moveSlide(sliderId, step) {
             const container = document.getElementById(sliderId);
             const wrapper = container.querySelector('.slider-wrapper');
             const totalSlides = wrapper.querySelectorAll('img').length;
-
             if (slideIndex[sliderId] === undefined) slideIndex[sliderId] = 0;
             slideIndex[sliderId] += step;
-
             if (slideIndex[sliderId] >= totalSlides) slideIndex[sliderId] = 0;
             if (slideIndex[sliderId] < 0) slideIndex[sliderId] = totalSlides - 1;
-
-            const offset = slideIndex[sliderId] * -100;
-            wrapper.style.transform = `translateX(${offset}%)`;
+            wrapper.style.transform = `translateX(${slideIndex[sliderId] * -100}%)`;
         }
 
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
+        // --- ENGINE SLIDER POPUP MODAL LIGHTBOX ---
+        let currentLbProjIdx = 0;
+        let currentLbImgIdx = 0;
+
+        function triggerOpenLightbox(projIndex) {
+            currentLbProjIdx = projIndex;
+            currentLbImgIdx = 0; 
+            
+            const proj = projectGlobalData[projIndex];
+            const wrapper = document.getElementById('lbSliderWrapper');
+            
+            wrapper.innerHTML = proj.images.map(imgSrc => `<img src="${imgSrc}">`).join('');
+            wrapper.style.transform = `translateX(0%)`;
+
+            document.getElementById('lbCaptionTitle').innerText = proj.title;
+            document.getElementById('lbCaptionText').innerText = proj.desc;
+
+            const btnGit = document.getElementById('lbBtnGit');
+            const btnView = document.getElementById('lbBtnView');
+            btnGit.href = proj.gitUrl;
+            
+            if (proj.viewUrl === '#') {
+                btnView.style.background = '#f4f4f4';
+                btnView.style.color = '#aaa';
+                btnView.style.cursor = 'not-allowed';
+                btnView.innerText = '👁️ No Live Demo';
+                btnView.onclick = (e) => e.preventDefault();
+            } else {
+                btnView.style.background = '#fff';
+                btnView.style.color = '#222';
+                btnView.style.cursor = 'pointer';
+                btnView.innerText = '👁️ Hasil Kode';
+                btnView.onclick = null;
+                btnView.href = proj.viewUrl;
+            }
+
             document.getElementById('lightbox').style.display = 'flex';
         }
 
@@ -433,58 +574,42 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
+        function moveLightboxSlide(step) {
+            const proj = projectGlobalData[currentLbProjIdx];
+            const wrapper = document.getElementById('lbSliderWrapper');
+            
+            currentLbImgIdx += step;
+            if (currentLbImgIdx >= proj.images.length) currentLbImgIdx = 0;
+            if (currentLbImgIdx < 0) currentLbImgIdx = proj.images.length - 1;
 
-        // --- --- ENGINE EMULATOR GAME BOY ADVANCE LIVE SYSTEM MULTIMODE --- ---
+            wrapper.style.transform = `translateX(${currentLbImgIdx * -100}%)`;
+        }
+
+
+        // --- ENGINE EMULATOR GAME BOY ADVANCE ---
         let gbaAudioCtx;
         let gbaSelectedGameIdx = 0; 
         let gbaCurrentImageIdx = 0; 
         let gbaTextScrollTop = 0;   
-        
-        // Mode GBA: BIOS_INTRO, SELEKSI_MENU, GAME_PLAYING (Portofolio View), SNAKE_MINIGAME, SNAKE_GAMEOVER
         let gbaCurrentState = 'BIOS_INTRO'; 
 
-        // Variabel Core Game Ular 8-bit
         let snakeCanvas, snakeCtx, snakeBody, snakeFood, sDx, sDy, snakeScore, snakeInterval;
 
-        const gbaConsoleGamesData = [
-            {
-                id: "slider1", title: "WEBCAM AZUNYAA",
-                desc: "Webcam Azunyaa adalah sistem photobox berbasis web. User bisa mengambil foto selfie secara live dari kamera laptop/HP. Framework: HTML5, JS MediaStream API, Bootstrap.",
-                images: ["assets/imageproject/ptx2.png", "assets/imageproject/ptx1.png", "assets/imageproject/ptx3.png"]
-            },
-            {
-                id: "slider2", title: "CHATBOX AI PYTHON",
-                desc: "Azunya AI adalah bot pintar asisten pengodean berbasis kecerdasan buatan. Terkoneksi penuh dengan API Google AI Studio via backend Python. Teknologi: Python, Flask, CSS UI.",
-                images: ["assets/imageproject/ctbx1.png", "assets/imageproject/ctbx2.png", "assets/imageproject/ctbx3.png"]
-            },
-            {
-                id: "slider3", title: "PHOTO GALLERY JKT",
-                desc: "Sistem galeri foto berskala besar untuk menampung keindahan lanskap tata kota DKI Jakarta. Mendukung upload multi-file gambar responsif. Framework: PHP Native, MySQL, Tailwind.",
-                images: ["assets/imageproject/gly1.png", "assets/imageproject/gly2.png", "assets/imageproject/gly3.png"]
-            }
-        ];
-
         function initGbaAudioContext() {
-            if (!gbaAudioCtx) {
-                gbaAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
+            if (!gbaAudioCtx) { gbaAudioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
             if (gbaAudioCtx.state === 'suspended') gbaAudioCtx.resume();
         }
 
         function playGbaSoundTone(freq, duration, volume, type = 'square') {
             initGbaAudioContext();
             if (!gbaAudioCtx) return;
-
             const osc = gbaAudioCtx.createOscillator();
             const gain = gbaAudioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(gbaAudioCtx.destination);
-            osc.type = type;
-            osc.frequency.setValueAtTime(freq, gbaAudioCtx.currentTime);
+            osc.connect(gain); gain.connect(gbaAudioCtx.destination);
+            osc.type = type; osc.frequency.setValueAtTime(freq, gbaAudioCtx.currentTime);
             gain.gain.setValueAtTime(volume, gbaAudioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, gbaAudioCtx.currentTime + duration);
-            osc.start();
-            osc.stop(gbaAudioCtx.currentTime + duration);
+            osc.start(); osc.stop(gbaAudioCtx.currentTime + duration);
         }
 
         function playNintyIntroChime() {
@@ -496,37 +621,25 @@
             const lcd = document.getElementById('gbaLcdFrame');
             const sCanvas = document.getElementById('gbaSnakeCanvas');
 
-            // Manajemen visibilitas canvas game ular
             if (gbaCurrentState !== 'SNAKE_MINIGAME' && snakeInterval) {
-                clearInterval(snakeInterval);
-                sCanvas.style.display = 'none';
-                lcd.style.display = 'block';
+                clearInterval(snakeInterval); sCanvas.style.display = 'none'; lcd.style.display = 'block';
             }
 
             if (gbaCurrentState === 'BIOS_INTRO') {
-                sCanvas.style.display = 'none';
-                lcd.style.display = 'block';
-                lcd.innerHTML = `
-                    <div style="text-align:center; font-weight:bold; font-size:0.85rem; margin-top:22px; color:#1e2716; letter-spacing:2px;">Nintendo</div>
-                    <div style="text-align:center; font-size:0.38rem; color:#3a4d2a; margin-top:20px;">TEKAN TOMBOL [A] UNTUK START</div>
-                `;
+                sCanvas.style.display = 'none'; lcd.style.display = 'block';
+                lcd.innerHTML = `<div style="text-align:center; font-weight:bold; font-size:0.85rem; margin-top:22px; color:#1e2716; letter-spacing:2px;">Nintendo</div><div style="text-align:center; font-size:0.38rem; color:#3a4d2a; margin-top:20px;">TEKAN TOMBOL [A] UNTUK START</div>`;
             }
             else if (gbaCurrentState === 'SELEKSI_MENU') {
                 let html = `<div style="border-bottom:1px solid #1e2716; font-size:0.46rem; font-weight:bold; padding-bottom:2px; margin-bottom:4px;">MAIN OS SELECT:</div>`;
-                gbaConsoleGamesData.forEach((game, index) => {
+                projectGlobalData.forEach((game, index) => {
                     const isSelected = index === gbaSelectedGameIdx;
-                    html += `
-                        <div class="${isSelected ? 'menu-item-active' : ''}" style="font-size:0.42rem; padding:1px 2px; display:flex; align-items:center;">
-                            <span style="width:10px; display:inline-block;">${isSelected ? '▶' : ' '}</span>
-                            <span>CART: ${game.title}</span>
-                        </div>
-                    `;
+                    html += `<div class="${isSelected ? 'menu-item-active' : ''}" style="font-size:0.42rem; padding:1px 2px; display:flex; align-items:center;"><span style="width:10px; display:inline-block;">${isSelected ? '▶' : ' '}</span><span>CART: ${game.title.substring(0,14)}..</span></div>`;
                 });
                 html += `<div style="margin-top:6px; font-size:0.4rem; color:#3a4d2a; text-align:center; border-top:1px dashed #1e2716; padding-top:3px;">TEKAN [START]: PLAY SNAKE GAME 🐍</div>`;
                 lcd.innerHTML = html;
             }
             else if (gbaCurrentState === 'GAME_PLAYING') {
-                const game = gbaConsoleGamesData[gbaSelectedGameIdx];
+                const game = projectGlobalData[gbaSelectedGameIdx];
                 lcd.innerHTML = `
                     <div class="gba-game-viewport">
                         <div class="gba-project-img-frame">
@@ -537,167 +650,77 @@
                             <div style="font-weight:bold; font-size:0.46rem; border-bottom:1px dashed #1e2716; color:#0c1202; margin-bottom:2px;">${game.title}</div>
                             <div id="textInnerScroll" style="transform: translateY(-${gbaTextScrollTop}px); transition: transform 0.1s ease;">${game.desc}</div>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             }
             else if (gbaCurrentState === 'SNAKE_GAMEOVER') {
-                lcd.innerHTML = `
-                    <div style="text-align:center; font-weight:bold; font-size:0.75rem; margin-top:20px; color:#b33939;">GAME OVER</div>
-                    <div style="text-align:center; font-size:0.5rem; margin-top:5px; font-weight:bold;">SCORE: ${snakeScore}</div>
-                    <div style="text-align:center; font-size:0.38rem; color:#1e2716; margin-top:10px;">TEKAN [A]: RESTART GAME<br>TEKAN [B]: KEMBALI MENU</div>
-                `;
+                lcd.innerHTML = `<div style="text-align:center; font-weight:bold; font-size:0.75rem; margin-top:20px; color:#b33939;">GAME OVER</div><div style="text-align:center; font-size:0.5rem; margin-top:5px; font-weight:bold;">SCORE: ${snakeScore}</div><div style="text-align:center; font-size:0.38rem; color:#1e2716; margin-top:10px;">TEKAN [A]: RESTART GAME<br>TEKAN [B]: KEMBALI MENU</div>`;
             }
         }
 
-        // --- MANAJER INTERAKSI KLIK TOMBOL CONSOLE GBA ---
         function controlGbaHardware(buttonAction) {
             playGbaSoundTone(1600, 0.03, 0.04, 'square');
-
             if (buttonAction === 'B') {
                 gbaTextScrollTop = 0; gbaCurrentImageIdx = 0;
-                if (gbaCurrentState === 'GAME_PLAYING' || gbaCurrentState === 'SNAKE_MINIGAME' || gbaCurrentState === 'SNAKE_GAMEOVER') {
-                    gbaCurrentState = 'SELEKSI_MENU';
-                } else if (gbaCurrentState === 'SELEKSI_MENU') {
-                    gbaCurrentState = 'BIOS_INTRO';
-                }
-                renderGbaLcdDisplay();
-                return;
+                if (gbaCurrentState === 'GAME_PLAYING' || gbaCurrentState === 'SNAKE_MINIGAME' || gbaCurrentState === 'SNAKE_GAMEOVER') { gbaCurrentState = 'SELEKSI_MENU'; } 
+                else if (gbaCurrentState === 'SELEKSI_MENU') { gbaCurrentState = 'BIOS_INTRO'; }
+                renderGbaLcdDisplay(); return;
             }
-
-            if (gbaCurrentState === 'BIOS_INTRO') {
-                if (buttonAction === 'A') {
-                    playNintyIntroChime();
-                    gbaCurrentState = 'SELEKSI_MENU';
-                    renderGbaLcdDisplay();
-                }
+            if (gbaCurrentState === 'BIOS_INTRO' && buttonAction === 'A') {
+                playNintyIntroChime(); gbaCurrentState = 'SELEKSI_MENU'; renderGbaLcdDisplay();
             }
             else if (gbaCurrentState === 'SELEKSI_MENU') {
-                if (buttonAction === 'UP') {
-                    gbaSelectedGameIdx = (gbaSelectedGameIdx - 1 + gbaConsoleGamesData.length) % gbaConsoleGamesData.length;
-                    renderGbaLcdDisplay();
-                } else if (buttonAction === 'DOWN') {
-                    gbaSelectedGameIdx = (gbaSelectedGameIdx + 1) % gbaConsoleGamesData.length;
-                    renderGbaLcdDisplay();
-                } else if (buttonAction === 'A') {
-                    playGbaSoundTone(700, 0.05, 0.04, 'square');
-                    gbaCurrentState = 'GAME_PLAYING';
-                    renderGbaLcdDisplay();
-                } else if (buttonAction === 'START') {
-                    // Pindah Langsung Ke Mode Snake Game Beneran
-                    document.getElementById('gbaLcdFrame').style.display = 'none';
-                    document.getElementById('gbaSnakeCanvas').style.display = 'block';
-                    gbaCurrentState = 'SNAKE_MINIGAME';
-                    startGbaSnakeEngine();
+                if (buttonAction === 'UP') { gbaSelectedGameIdx = (gbaSelectedGameIdx - 1 + projectGlobalData.length) % projectGlobalData.length; renderGbaLcdDisplay(); } 
+                else if (buttonAction === 'DOWN') { gbaSelectedGameIdx = (gbaSelectedGameIdx + 1) % projectGlobalData.length; renderGbaLcdDisplay(); } 
+                else if (buttonAction === 'A') { playGbaSoundTone(700, 0.05, 0.04, 'square'); gbaCurrentState = 'GAME_PLAYING'; renderGbaLcdDisplay(); } 
+                else if (buttonAction === 'START') {
+                    document.getElementById('gbaLcdFrame').style.display = 'none'; document.getElementById('gbaSnakeCanvas').style.display = 'block';
+                    gbaCurrentState = 'SNAKE_MINIGAME'; startGbaSnakeEngine();
                 }
             }
             else if (gbaCurrentState === 'GAME_PLAYING') {
-                const activeCart = gbaConsoleGamesData[gbaSelectedGameIdx];
-                if (buttonAction === 'LEFT') {
-                    gbaCurrentImageIdx = (gbaCurrentImageIdx - 1 + activeCart.images.length) % activeCart.images.length;
-                    renderGbaLcdDisplay();
-                } else if (buttonAction === 'RIGHT') {
-                    gbaCurrentImageIdx = (gbaCurrentImageIdx + 1) % activeCart.images.length;
-                    renderGbaLcdDisplay();
-                } else if (buttonAction === 'UP') {
-                    if (gbaTextScrollTop > 0) gbaTextScrollTop -= 8;
-                    renderGbaLcdDisplay();
-                } else if (buttonAction === 'DOWN') {
-                    const innerHeight = document.getElementById('textInnerScroll')?.offsetHeight || 40;
-                    if (gbaTextScrollTop < innerHeight - 25) gbaTextScrollTop += 8;
-                    renderGbaLcdDisplay();
-                } else if (buttonAction === 'START' || buttonAction === 'A') {
+                const activeCart = projectGlobalData[gbaSelectedGameIdx];
+                if (buttonAction === 'LEFT') { gbaCurrentImageIdx = (gbaCurrentImageIdx - 1 + activeCart.images.length) % activeCart.images.length; renderGbaLcdDisplay(); } 
+                else if (buttonAction === 'RIGHT') { gbaCurrentImageIdx = (gbaCurrentImageIdx + 1) % activeCart.images.length; renderGbaLcdDisplay(); } 
+                else if (buttonAction === 'UP') { if (gbaTextScrollTop > 0) gbaTextScrollTop -= 8; renderGbaLcdDisplay(); } 
+                else if (buttonAction === 'DOWN') { const innerHeight = document.getElementById('textInnerScroll')?.offsetHeight || 40; if (gbaTextScrollTop < innerHeight - 25) gbaTextScrollTop += 8; renderGbaLcdDisplay(); } 
+                else if (buttonAction === 'START' || buttonAction === 'A') {
                     playGbaSoundTone(1100, 0.12, 0.05, 'triangle');
-                    const targetCard = document.getElementById('card-' + activeCart.id);
+                    const targetCard = document.getElementById('card-slider' + (gbaSelectedGameIdx + 1));
                     if (targetCard) targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             }
             else if (gbaCurrentState === 'SNAKE_MINIGAME') {
-                // Navigasi Mengontrol Arah Jalannya Ular Monokrom
                 if (buttonAction === 'UP' && sDy === 0)    { sDx = 0; sDy = -6; }
                 if (buttonAction === 'DOWN' && sDy === 0)  { sDx = 0; sDy = 6; }
                 if (buttonAction === 'LEFT' && sDx === 0)  { sDx = -6; sDy = 0; }
                 if (buttonAction === 'RIGHT' && sDx === 0) { sDx = 6; sDy = 0; }
             }
-            else if (gbaCurrentState === 'SNAKE_GAMEOVER') {
-                if (buttonAction === 'A') {
-                    document.getElementById('gbaLcdFrame').style.display = 'none';
-                    document.getElementById('gbaSnakeCanvas').style.display = 'block';
-                    gbaCurrentState = 'SNAKE_MINIGAME';
-                    startGbaSnakeEngine();
-                }
+            else if (gbaCurrentState === 'SNAKE_GAMEOVER' && buttonAction === 'A') {
+                document.getElementById('gbaLcdFrame').style.display = 'none'; document.getElementById('gbaSnakeCanvas').style.display = 'block';
+                gbaCurrentState = 'SNAKE_MINIGAME'; startGbaSnakeEngine();
             }
         }
 
-        // --- ENGINE GENERATOR GAME ULAR 2D ASLI DI DALAM CANVAS GBA ---
+        // --- GAME ULAR ENGINE ---
         function startGbaSnakeEngine() {
-            snakeCanvas = document.getElementById('gbaSnakeCanvas');
-            snakeCtx = snakeCanvas.getContext('2d');
-
-            snakeBody = [{x: 60, y: 60}, {x: 54, y: 60}, {x: 48, y: 60}];
-            snakeScore = 0;
-            sDx = 6; sDy = 0;
-
-            generateGbaFood();
-            if (snakeInterval) clearInterval(snakeInterval);
-            snakeInterval = setInterval(updateGbaSnakeLoop, 110); // Game Speed
+            snakeCanvas = document.getElementById('gbaSnakeCanvas'); snakeCtx = snakeCanvas.getContext('2d');
+            snakeBody = [{x: 60, y: 60}, {x: 54, y: 60}, {x: 48, y: 60}]; snakeScore = 0; sDx = 6; sDy = 0;
+            generateGbaFood(); if (snakeInterval) clearInterval(snakeInterval);
+            snakeInterval = setInterval(updateGbaSnakeLoop, 110); 
         }
-
-        function generateGbaFood() {
-            snakeFood = {
-                x: Math.floor(Math.random() * (snakeCanvas.width / 6)) * 6,
-                y: Math.floor(Math.random() * (snakeCanvas.height / 6)) * 6
-            };
-        }
-
+        function generateGbaFood() { snakeFood = { x: Math.floor(Math.random() * (snakeCanvas.width / 6)) * 6, y: Math.floor(Math.random() * (snakeCanvas.height / 6)) * 6 }; }
         function updateGbaSnakeLoop() {
-            if (checkGbaSnakeCollision()) {
-                playGbaSoundTone(300, 0.35, 0.06, 'sawtooth'); // Bunyi tabrakan game over
-                clearInterval(snakeInterval);
-                gbaCurrentState = 'SNAKE_GAMEOVER';
-                renderGbaLcdDisplay();
-                return;
-            }
-
-            const newHead = {x: snakeBody[0].x + sDx, y: snakeBody[0].y + sDy};
-            snakeBody.unshift(newHead);
-
-            // Kondisi Ular Berhasil Makan Point
-            if (snakeBody[0].x === snakeFood.x && snakeBody[0].y === snakeFood.y) {
-                snakeScore += 10;
-                playGbaSoundTone(1800, 0.04, 0.05, 'square'); // Bunyi chiptune girang makan koin
-                generateGbaFood();
-            } else {
-                snakeBody.pop();
-            }
-
-            // Mulai Menggambar Pixel Monokrom Hijau Lumut
-            snakeCtx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-            snakeCtx.fillStyle = '#1e2716';
-
-            // Menggambar Poin Makanan Kotak
+            if (checkGbaSnakeCollision()) { playGbaSoundTone(300, 0.35, 0.06, 'sawtooth'); clearInterval(snakeInterval); gbaCurrentState = 'SNAKE_GAMEOVER'; renderGbaLcdDisplay(); return; }
+            const newHead = {x: snakeBody[0].x + sDx, y: snakeBody[0].y + sDy}; snakeBody.unshift(newHead);
+            if (snakeBody[0].x === snakeFood.x && snakeBody[0].y === snakeFood.y) { snakeScore += 10; playGbaSoundTone(1800, 0.04, 0.05, 'square'); generateGbaFood(); } else { snakeBody.pop(); }
+            snakeCtx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height); snakeCtx.fillStyle = '#1e2716';
             snakeCtx.fillRect(snakeFood.x, snakeFood.y, 5, 5);
-
-            // Menggambar Rantai Tubuh Ular
-            snakeBody.forEach(part => {
-                snakeCtx.fillRect(part.x, part.y, 5, 5);
-            });
-
-            // Tulisan Skor Mini
-            snakeCtx.font = 'bold 8px monospace';
-            snakeCtx.fillText("SCORE:" + snakeScore, 190, 10);
+            snakeBody.forEach(part => { snakeCtx.fillRect(part.x, part.y, 5, 5); });
+            snakeCtx.font = 'bold 8px monospace'; snakeCtx.fillText("SCORE:" + snakeScore, 190, 10);
         }
-
         function checkGbaSnakeCollision() {
-            // Cek nabrak badan sendiri
-            for (let i = 4; i < snakeBody.length; i++) {
-                if (snakeBody[i].x === snakeBody[0].x && snakeBody[i].y === snakeBody[0].y) return true;
-            }
-            // Cek tabrak pembatas dinding frame LCD
-            const wallL = snakeBody[0].x < 0;
-            const wallR = snakeBody[0].x >= snakeCanvas.width;
-            const wallT = snakeBody[0].y < 0;
-            const wallB = snakeBody[0].y >= snakeCanvas.height;
-            return wallL || wallR || wallT || wallB;
+            for (let i = 4; i < snakeBody.length; i++) { if (snakeBody[i].x === snakeBody[0].x && snakeBody[i].y === snakeBody[0].y) return true; }
+            return snakeBody[0].x < 0 || snakeBody[0].x >= snakeCanvas.width || snakeBody[0].y < 0 || snakeBody[0].y >= snakeCanvas.height;
         }
     </script>
 </body>
