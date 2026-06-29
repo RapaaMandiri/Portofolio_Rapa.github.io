@@ -174,6 +174,44 @@
             text-align: center; position: relative;
         }
 
+        /* Container flex khusus untuk menyejajarkan dua sertifikat */
+        .certificates-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .certificates-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        /* Tombol Khusus untuk Mengintip/Melihat Gambar Sertifikat */
+        .cert-view-btn {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.7rem;
+            background: #2c2c2c;
+            color: #fff;
+            padding: 5px 12px;
+            text-decoration: none;
+            border: 1px dashed #777;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+
+        .cert-view-btn:hover {
+            background: #fff;
+            color: #000;
+            border-style: solid;
+        }
+
         .bio-grid { 
             display: grid; 
             grid-template-columns: 1fr;
@@ -235,24 +273,67 @@
             border-radius: 4px;
         }
 
-        .youtube-journey-box {
-            display: flex; 
-            flex-direction: column; 
+        /* --- Style Baru untuk Section CV --- */
+        .cv-box {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 20px; 
-            margin: 20px 0 35px 0; 
-            background: #fffdf5; 
-            padding: 15px; 
-            border-radius: 8px; 
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            background: #fffdf5;
+            padding: 25px 15px;
+            border-radius: 8px;
             border: 1px solid #e7d8c9;
             text-align: center;
         }
 
         @media (min-width: 768px) {
-            .youtube-journey-box {
-                flex-direction: row; 
-                text-align: left;
+            .cv-box {
+                flex-direction: row;
+                gap: 25px;
+                padding: 30px 20px;
             }
+        }
+
+        .cv-btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .cv-btn {
+            display: inline-block;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.85rem;
+            padding: 10px 16px;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            transition: 0.2s;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .cv-btn-preview {
+            background: #34495e;
+            color: #fff;
+            border: 1px solid #2c3e50;
+        }
+
+        .cv-btn-preview:hover {
+            background: #2c3e50;
+        }
+
+        .cv-btn-download {
+            background: #e67e22;
+            color: #fff;
+            border: 1px solid #d35400;
+        }
+
+        .cv-btn-download:hover {
+            background: #d35400;
         }
 
 
@@ -545,7 +626,6 @@
                             • Figma<br>
                             • Canva<br><br>
 
-                            <!-- --- INTEGRASI PERSENTASE KEMAMPUAN (SKILL BARS) --- -->
                             <strong>Skill Mastery Level:</strong>
                             <div class="skill-perf-box">
                                 <div class="skill-title-meta"><span>HTML & CSS</span><span>90%</span></div>
@@ -570,41 +650,18 @@
         </div>
 
         <div style="margin-top: 60px; position: relative; border: 2px dashed #a8a29e; padding: 30px; background: rgba(255,255,255,0.3); border-radius: 12px;">
-            <div class="torn-paper" style="top:-18px; left:15px; background:#fff; font-size:0.6rem; font-family:'Courier Prime';">My Channel</div>
-            <span class="section-tag" style="background:#ff0000;">YOUTUBE JOURNEY</span>
+            <div class="torn-paper" style="top:-18px; left:15px; background:#fff; font-size:0.6rem; font-family:'Courier Prime';">My documents</div>
+            <span class="section-tag" style="background:#00b894;">CURRICULUM VITAE</span>
             
-            <div class="youtube-journey-box">
-                <img src="https://yt3.ggpht.com/7_i3bX1BGOY8FjjYK9pfN7H6rWXmsxLH8rcP3kFPZMOnfigv9c4dNC0yZ_zzfSrAk-7h2_TXrg=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="YouTube Profile" onerror="this.src='https://via.placeholder.com/80?text=YT'" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #ccc; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
-                <div>
-                    <h3 style="font-family: 'Special Elite'; margin: 0 0 5px 0; font-size: 1.1rem;">Azuriamandrian08</h3>
-                    <p style="font-family: 'Courier Prime'; font-size: 0.75rem; margin: 0; color: #555;">Gaming, Coding, & Random Stuff Journey</p>
-                    <a href="https://www.youtube.com/@Azuriamandrian08" target="_blank" style="display: inline-block; margin-top: 8px; font-family: 'Special Elite'; font-size: 0.7rem; background: #ff0000; color: white; padding: 4px 10px; text-decoration: none; border-radius: 4px;">▶ Subscribe</a>
+            <div class="cv-box">
+                <div style="font-size: 2.2rem; margin-right: 10px;">📄</div>
+                <div style="flex-grow: 1;">
+                    <h3 style="font-family: 'Special Elite'; margin: 0 0 5px 0; font-size: 1.1rem; text-align: left;">Rafa Mandala - CV</h3>
+                    <p style="font-family: 'Courier Prime'; font-size: 0.75rem; margin: 0; color: #555; text-align: left;">Format File: PDF | Siap diunduh atau dipratinjau langsung</p>
                 </div>
-            </div>
-
-            <div class="gallery-grid">
-                <div class="polaroid" style="transform:rotate(1deg); background:#fff;">
-                    <div class="tape-clear" style="top: -5px; right: 5px; transform:rotate(15deg);"></div>
-                    <a href="https://youtu.be/Ld2_JGhB5nA?si=zzqEbQm2SuLTCL9a" target="_blank" style="text-decoration: none; color: #333;">
-                        <img src="https://img.youtube.com/vi/Ld2_JGhB5nA/mqdefault.jpg" alt="Video 1" style="width:100%; height:140px; object-fit:cover;">
-                        <div class="polaroid-cap" style="font-size: 0.75rem;">Video 1</div>
-                    </a>
-                </div>
-                
-                <div class="polaroid" style="transform:rotate(-2deg); background:#fff;">
-                    <div class="tape" style="top:-12px; left:calc(50% - 25px); width:40px; background:var(--tape-pink);"></div>
-                    <a href="https://youtu.be/a_uBUMVjMB4?si=-WBVNIZwR6N0FMN6" target="_blank" style="text-decoration: none; color: #333;">
-                        <img src="https://img.youtube.com/vi/a_uBUMVjMB4/mqdefault.jpg" alt="Video 2" style="width:100%; height:140px; object-fit:cover;">
-                        <div class="polaroid-cap" style="font-size: 0.75rem;">Video 2</div>
-                    </a>
-                </div>
-                
-                <div class="polaroid" style="transform:rotate(2deg); background:#fff;">
-                    <div class="tape-clear" style="bottom: 10px; right: 5px; transform:rotate(30deg);"></div>
-                    <a href="https://youtu.be/5k3seHdhgrE?si=aNN43X-HmY6A_Sjb" target="_blank" style="text-decoration: none; color: #333;">
-                        <img src="https://img.youtube.com/vi/5k3seHdhgrE/mqdefault.jpg" alt="Video 3" style="width:100%; height:140px; object-fit:cover;">
-                        <div class="polaroid-cap" style="font-size: 0.75rem;">Video 3</div>
-                    </a>
+                <div class="cv-btn-container">
+                    <a href="CV_Rafa_Mandala.pdf" target="_blank" class="cv-btn cv-btn-preview">Preview CV</a>
+                    <a href="CV_Rafa_Mandala.pdf" download class="cv-btn cv-btn-download">Download CV</a>
                 </div>
             </div>
         </div>
@@ -612,14 +669,23 @@
         <div class="pmr-section">
             <div class="torn-paper" style="top:-18px; left:10px; background:#fff; font-size:0.6rem; font-family:'Courier Prime';">HumasRecord</div>
             <div class="tape-clear" style="bottom:-5px; right: 15%; transform: rotate(10deg); background: var(--tape-green);"></div>
-            <span class="section-tag" style="background:#444;">ORGANIZATION JOURNEY</span>
-            <p style="font-family: 'Courier Prime'; font-weight:bold;">Wakil Koordinator Humas PMR (2024-2025)</p>
-            <div style="margin-top: 25px; display: flex; justify-content: center; position: relative;">
-                <div style="position: absolute; top: -10px; right: -15px; font-size: 1.5rem; transform:rotate(15deg);">🏆</div>
-                <div class="polaroid" style="max-width: 400px; transform: rotate(1deg); padding-bottom:40px;">
+            <span class="section-tag" style="background:#444;">ORGANIZATION & ACADEMIC CERTIFICATES</span>
+            <p style="font-family: 'Courier Prime'; font-weight:bold;">Wakil Koordinator Humas PMR (2024-2025) & Achievement Records</p>
+            
+            <div class="certificates-container">
+                <div class="polaroid" style="max-width: 320px; transform: rotate(1deg); padding-bottom:25px; position: relative;">
+                    <div style="position: absolute; top: -10px; right: -15px; font-size: 1.5rem; transform:rotate(15deg); z-index: 10;">🏆</div>
                     <div class="tape" style="top:-12px; right:20px; width:50px; background:var(--tape-blue);"></div>
-                    <img src="images/sertifikat_pmr.jpg" alt="Sertifikat PMR" onerror="this.src='https://via.placeholder.com/400x200?text=Sertifikat+PMR'">
+                    <img src="images/sertifikat_pmr.png" alt="Sertifikat PMR" onerror="this.src='https://via.placeholder.com/400x200?text=Sertifikat+PMR'">
                     <div class="polaroid-cap">PMR Achievement Certificate</div>
+                    <a href="images/sertifikat_pmr.png" target="_blank" class="cert-view-btn">Lihat Sertifikat</a>
+                </div>
+
+                <div class="polaroid" style="max-width: 320px; transform: rotate(-2deg); padding-bottom:25px; position: relative;">
+                    <div class="tape" style="top:-12px; left:20px; width:50px; background:var(--tape-pink);"></div>
+                    <img src="images/sertifikat_korean.jpg" alt="Sertifikat First Step Korean" onerror="this.src='https://via.placeholder.com/400x200?text=First+Step+Korean+Certificate'">
+                    <div class="polaroid-cap">First Step Korean Certificate</div>
+                    <a href="images/sertifikat_korean.jpg" target="_blank" class="cert-view-btn">Lihat Sertifikat</a>
                 </div>
             </div>
         </div>
